@@ -147,7 +147,7 @@ const Hero = () => {
                         className="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-[2rem] p-8 flex-1 flex flex-col justify-between relative overflow-hidden group cursor-pointer hover:shadow-2xl transition-all border border-slate-700"
                     >
                         <div className="absolute inset-0 opacity-10">
-                            <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&q=80" className="w-full h-full object-cover" alt="Calendar" />
+                            <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover" alt="Calendar" />
                         </div>
                         <div className="relative z-10">
                             <div className="flex justify-between items-start mb-4">
@@ -326,14 +326,14 @@ const Home = () => {
 
                     <div className="grid md:grid-cols-4 gap-6 mb-12">
                         {[
-                            { name: '3DS Max', img: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=300', color: 'from-cyan-500 to-blue-600' },
-                            { name: 'AutoCAD', img: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=300', color: 'from-red-500 to-rose-600' },
-                            { name: 'SolidWorks', img: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=300', color: 'from-orange-500 to-amber-600' },
-                            { name: 'Python', img: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=300', color: 'from-blue-500 to-indigo-600' },
-                            { name: 'Revit', img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=300', color: 'from-green-500 to-emerald-600' },
-                            { name: 'ANSYS', img: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=300', color: 'from-purple-500 to-violet-600' },
-                            { name: 'Photoshop', img: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=300', color: 'from-blue-600 to-cyan-600' },
-                            { name: 'Illustrator', img: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=300', color: 'from-orange-600 to-yellow-600' },
+                            { name: '3DS Max', img: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=400&w=300', color: 'from-cyan-500 to-blue-600' },
+                            { name: 'AutoCAD', img: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=400&w=300', color: 'from-red-500 to-rose-600' },
+                            { name: 'SolidWorks', img: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=400&w=300', color: 'from-orange-500 to-amber-600' },
+                            { name: 'Python', img: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=400&w=300', color: 'from-blue-500 to-indigo-600' },
+                            { name: 'Revit', img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=400&w=300', color: 'from-green-500 to-emerald-600' },
+                            { name: 'ANSYS', img: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=400&w=300', color: 'from-purple-500 to-violet-600' },
+                            { name: 'Photoshop', img: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=400&w=300', color: 'from-blue-600 to-cyan-600' },
+                            { name: 'Illustrator', img: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=400&w=300', color: 'from-orange-600 to-yellow-600' },
                         ].map((tech, i) => (
                             <motion.div
                                 key={i}

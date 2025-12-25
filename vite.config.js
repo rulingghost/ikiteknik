@@ -12,5 +12,18 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'framer': ['framer-motion'],
+          'icons': ['lucide-react']
+        }
+      }
+    },
+    chunkSizeWarningLimit: 1000
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom', 'framer-motion']
   }
 })
