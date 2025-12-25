@@ -147,7 +147,7 @@ const Hero = () => {
                         className="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-[2rem] p-8 flex-1 flex flex-col justify-between relative overflow-hidden group cursor-pointer hover:shadow-2xl transition-all border border-slate-700"
                     >
                         <div className="absolute inset-0 opacity-10">
-                            <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover" alt="Calendar" />
+                            <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&q=60&w=400" loading="lazy" className="w-full h-full object-cover" alt="Calendar" />
                         </div>
                         <div className="relative z-10">
                             <div className="flex justify-between items-start mb-4">

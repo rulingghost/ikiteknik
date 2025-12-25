@@ -1,50 +1,63 @@
-import React, { useEffect } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import Courses from './pages/Courses';
-import Calendar from './pages/Calendar';
-import StudentWorks from './pages/StudentWorks';
-import Articles from './pages/Articles';
-import About from './pages/About';
-import PearsonVue from './pages/PearsonVue';
-import Contact from './pages/Contact';
-import StubPage from './pages/StubPage';
 import { MessageCircle } from 'lucide-react';
 import { SITE_DATA } from './constants';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
-// Scroll to top on every route change
+// Lazy load all pages for faster initial load
+const Home = lazy(() => import('./pages/Home'));
+const Courses = lazy(() => import('./pages/Courses'));
+const About = lazy(() => import('./pages/About'));
+const StudentWorks = lazy(() => import('./pages/StudentWorks'));
+const Articles = lazy(() => import('./pages/Articles'));
+const Contact = lazy(() => import('./pages/Contact'));
+const Calendar = lazy(() => import('./pages/Calendar'));
+const PearsonVue = lazy(() => import('./pages/PearsonVue'));
+
+// Loading component
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-slate-50">
+    <div className="text-center">
+      <div className="w-16 h-16 border-4 border-rose-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+      <p className="text-slate-600 font-medium">Yükleniyor...</p>
+    </div>
+  </div>
+);
+
+// Scroll to top on route change
 const ScrollToTop = () => {
-    const { pathname } = useLocation();
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [pathname]);
-    return null;
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
 };
 
-const App = () => {
+function App() {
   return (
     <Router>
       <ScrollToTop />
       <div className="antialiased bg-slate-50 text-slate-900 font-['Inter'] selection:bg-rose-500 selection:text-white">
         <Navbar />
         <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/egitimlerimiz" element={<Courses />} />
-            <Route path="/takvim" element={<Calendar />} />
-            <Route path="/calismalar" element={<StudentWorks />} />
-            <Route path="/makaleler" element={<Articles />} />
-            <Route path="/hakkimizda" element={<About />} />
-            <Route path="/pearson" element={<PearsonVue />} />
-            <Route path="/iletisim" element={<Contact />} />
-            <Route path="*" element={<Home />} />
-          </Routes>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/egitimlerimiz" element={<Courses />} />
+              <Route path="/hakkimizda" element={<About />} />
+              <Route path="/calismalar" element={<StudentWorks />} />
+              <Route path="/makaleler" element={<Articles />} />
+              <Route path="/iletisim" element={<Contact />} />
+              <Route path="/takvim" element={<Calendar />} />
+              <Route path="/pearson" element={<PearsonVue />} />
+              <Route path="*" element={<Home />} />
+            </Routes>
+          </Suspense>
         </main>
         <Footer />
         
-        {/* Fixed WhatsApp Support Button - Smaller */}
+        {/* Fixed WhatsApp Support Button */}
         <a 
           href={`https://wa.me/${SITE_DATA.contact.whatsapp.replace(/[^0-9]/g, '')}`} 
           target="_blank" 
@@ -58,6 +71,6 @@ const App = () => {
       </div>
     </Router>
   );
-};
+}
 
 export default App;
