@@ -33,7 +33,7 @@ export const SITE_DATA = {
         id: "featured",
         title: "Öne Çıkanlar",
         icon: <Star />,
-        description: "İki Teknik Bilişim bünyesinde en çok tercih edilen ve kariyer basamaklarında size en büyük ivmeyi kazandıracak öne çıkan eğitimlerimiz.",
+        description: "ikiteknik Bilişim bünyesinde en çok tercih edilen ve kariyer basamaklarında size en büyük ivmeyi kazandıracak öne çıkan eğitimlerimiz.",
         courses: [
           "Yazılım Uzmanlığı", "AutoCAD Kursu", "Sistem Uzmanlığı", "SolidWorks Kursu", 
           "Grafik Tasarım", "3DS Max Kursu", "Python Programlama", "Catia Kursu"
