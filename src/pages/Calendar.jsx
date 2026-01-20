@@ -2,6 +2,7 @@ import React from 'react';
 import { Calendar as CalIcon, Clock, ArrowRight, User, MapPin, Award } from 'lucide-react';
 import OptimizedImage from '../components/OptimizedImage';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 const Calendar = () => {
     const events = [
@@ -81,6 +82,11 @@ const Calendar = () => {
 
   return (
     <div className="pt-24 pb-12 bg-gradient-to-br from-slate-50 via-white to-rose-50 min-h-screen font-sans relative overflow-hidden">
+        <SEO 
+            title="Eğitim Takvimi" 
+            description="ikiteknik Bilişim eğitim takvimi. Yaklaşan AutoCAD, SolidWorks, 3DS Max ve Yazılım kurslarının başlangıç tarihleri, kontenjan durumu ve ders programları."
+            keywords="egitim takvimi, kurs takvimi, ankara kurs tarihleri, autocad kursu ne zaman, solidworks kurs baslangic"
+        />
       {/* Animated background */}
       <div 
         className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-rose-200/20 to-purple-200/20 rounded-full blur-3xl animate-pulse-slow"

@@ -3,6 +3,7 @@ import { Box, Layers, Printer, RotateCcw, CheckCircle, ArrowRight, Sparkles, Tar
 import OptimizedImage from '../components/OptimizedImage';
 import { Link } from 'react-router-dom';
 import ImageLightbox from '../components/ImageLightbox';
+import SEO from '../components/SEO';
 
 const Modeling3D = () => {
   const [activeService, setActiveService] = useState(0);
@@ -169,6 +170,11 @@ const Modeling3D = () => {
 
   return (
     <div className="bg-slate-50 min-h-screen">
+      <SEO 
+        title="3D Modelleme Hizmetleri" 
+        description="Profesyonel 3D modelleme hizmetleri: Ürün tasarımı, endüstriyel modelleme, 3D baskıya hazır modeller ve tersine mühendislik çözümleri."
+        keywords="3d modelleme, urun tasarimi, endustriyel tasarim, 3d baski, tersine muhendislik, solidworks, 3ds max"
+      />
       {/* Hero Section */}
       <section className="pt-32 pb-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
         {/* Animated background elements */}

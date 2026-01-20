@@ -3,6 +3,7 @@ import { ChevronRight, Clock, Users, Star, CheckCircle, Search, Sparkles, Filter
 import { SITE_DATA } from '../constants';
 import OptimizedImage from '../components/OptimizedImage';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 const CourseCard = memo(({ course }) => (
     <div className="tilt-3d group bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 flex flex-col h-full animate-slide-up">
@@ -103,6 +104,11 @@ const Courses = () => {
 
     return (
         <div className="bg-slate-50 min-h-screen pt-32 pb-24 font-sans relative overflow-hidden">
+            <SEO 
+                title="Eğitimlerimiz" 
+                description="Kariyerinize yön verecek profesyonel eğitimler: AutoCAD, SolidWorks, Revit, 3DS Max, Yazılım ve daha fazlası. Uygulamalı ve sertifikalı kurslar."
+                keywords="egitim, kurs, ankara kurs, teknik egitim, yazilim kursu, autocad, solidworks, mimari egitim"
+            />
              {/* Animated background elements */}
              <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-rose-100/40 to-transparent rounded-full blur-3xl pointer-events-none" />
              <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-blue-100/40 to-transparent rounded-full blur-3xl pointer-events-none" />
@@ -142,19 +148,18 @@ const Courses = () => {
                         </div>
                     </div>
 
-                    {/* Filters */}
-                    <div className="flex-1 overflow-x-auto pb-4 pt-2 -mt-2 scrollbar-hide no-scrollbar">
-                        <div className="flex gap-3">
+                    {/* Filters - Flex Wrap Pills */}
+                    <div className="flex-1">
+                        <div className="flex flex-wrap gap-3">
                             {categories.map((cat, i) => (
                                 <button
                                     key={cat}
                                     onClick={() => setSelectedCategory(cat)}
-                                    className={`px-6 py-4 rounded-2xl font-black text-xs whitespace-nowrap transition-all uppercase tracking-widest shadow-lg border hover:-translate-y-1 active:translate-y-0 ${
-                                        selectedCategory === cat 
-                                        ? 'bg-slate-900 text-white border-slate-800 shadow-slate-900/20' 
-                                        : 'bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-900 border-slate-100'
+                                    className={`px-5 py-3 rounded-xl text-xs font-bold transition-all duration-300 border hover:-translate-y-1 active:scale-95 shadow-sm
+                                    ${selectedCategory === cat 
+                                        ? 'bg-slate-900 text-white border-slate-900 shadow-lg shadow-slate-900/20 scale-105' 
+                                        : 'bg-white text-slate-500 border-slate-200 hover:border-rose-300 hover:text-rose-600 hover:bg-rose-50'
                                     }`}
-                                    style={{ animationDelay: `${i * 0.05}s` }}
                                 >
                                     {cat === 'All' ? 'Tümü' : cat}
                                 </button>

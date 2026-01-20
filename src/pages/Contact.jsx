@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Mail, Phone, MapPin, Send, Instagram, Linkedin, Facebook, MessageCircle, Clock, Navigation } from 'lucide-react';
 import { SITE_DATA } from '../constants';
 import OptimizedImage from '../components/OptimizedImage';
+import { useLocation } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 const Contact = () => {
+  const location = useLocation();
   const [formData, setFormData] = React.useState({
     firstName: '',
     lastName: '',
@@ -11,6 +14,23 @@ const Contact = () => {
     subject: 'Genel Bilgi',
     message: ''
   });
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const subjectParam = searchParams.get('subject');
+    const courseParam = searchParams.get('course');
+    const msgParam = searchParams.get('message');
+
+    if (subjectParam || courseParam || msgParam) {
+        setFormData(prev => ({
+            ...prev,
+            subject: subjectParam === 'kayit' ? 'Kayıt Olmak İstiyorum' : 'Genel Bilgi',
+            message: msgParam 
+                ? decodeURIComponent(msgParam) 
+                : (courseParam ? `${courseParam} eğitimi hakkında detaylı bilgi almak ve kayıt olmak istiyorum.` : '')
+        }));
+    }
+  }, [location]);
   
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [submitStatus, setSubmitStatus] = React.useState(null); // 'success' | 'error' | null
@@ -66,6 +86,11 @@ const Contact = () => {
 
   return (
     <div className="pt-24 pb-12 bg-gradient-to-br from-slate-50 via-white to-green-50 min-h-screen font-sans relative overflow-hidden">
+        <SEO 
+            title="İletişim" 
+            description="ikiteknik Bilişim ile iletişime geçin. Adres, telefon, e-posta bilgileri ve online iletişim formu. Bize ulaşın, sorularınızı yanıtlayalım."
+            keywords="iletisim, bize ulasin, adres, telefon, ikiteknik iletisim, ankara iletisim"
+        />
       {/* Animated background */}
       <div 
         className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-br from-green-200/20 to-blue-200/20 rounded-full blur-3xl animate-pulse-slow"

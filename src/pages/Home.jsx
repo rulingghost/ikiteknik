@@ -15,60 +15,72 @@ const Hero = memo(() => {
   }, []);
 
   return (
-    <section className="pt-32 pb-16 bg-gradient-to-br from-slate-50 via-white to-rose-50 min-h-[85vh] flex flex-col justify-center relative overflow-hidden">
+    <section className="pt-32 pb-16 bg-gradient-to-br from-slate-50 via-white to-rose-50/50 min-h-[90vh] flex flex-col justify-center relative overflow-hidden">
         {/* Animated background elements */}
-        <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-br from-rose-200/20 to-blue-200/20 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-purple-200/20 rounded-full blur-3xl animate-pulse-slow stagger-3" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-rose-200/10 to-blue-200/10 rounded-full blur-[100px] animate-pulse-slow translate-x-1/3 -translate-y-1/3" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-br from-blue-200/10 to-purple-200/10 rounded-full blur-[100px] animate-pulse-slow stagger-3 -translate-x-1/3 translate-y-1/3" />
+        
+        {/* Grid Pattern Overlay */}
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay pointer-events-none"></div>
 
         <div className="container mx-auto px-6 relative z-10">
-            <div className="grid lg:grid-cols-12 gap-8 items-stretch">
+            <div className="grid lg:grid-cols-12 gap-6 items-stretch">
                 {/* Main Content Card with 3D Interaction */}
-                <div className="lg:col-span-8 bg-white/80 backdrop-blur-xl rounded-[2rem] p-8 md:p-12 shadow-2xl shadow-slate-900/10 border border-white/50 flex flex-col justify-center relative overflow-hidden group animate-slide-up hover-lift transition-all duration-500">
-                    {/* Background pattern */}
-                    <div className="absolute inset-0 opacity-5">
-                        <div className="absolute inset-0" style={{
-                            backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23000000" fill-opacity="1"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'
-                        }} />
+                <div className="lg:col-span-8 bg-white/70 backdrop-blur-2xl rounded-[2.5rem] p-8 md:p-16 shadow-2xl shadow-slate-900/5 border border-white/60 flex flex-col justify-center relative overflow-hidden group animate-slide-up transition-all duration-500 hover:shadow-rose-900/5 hover:border-rose-100/50">
+                    {/* Decorative Elements */}
+                    <div className="absolute top-0 right-0 p-12 opacity-[0.03] pointer-events-none">
+                         <div className="w-64 h-64 border-[40px] border-slate-900 rounded-full"></div>
                     </div>
                     
                     <div className="relative z-10">
-                        <span 
-                            className="inline-block px-3 py-1 rounded-lg bg-gradient-to-r from-rose-500 to-rose-600 text-white text-[10px] font-bold tracking-widest uppercase mb-4 w-fit shadow-lg shadow-rose-500/30"
-                        >
-                            {SITE_DATA.slider[current].badge}
-                        </span>
+                        <div className="flex items-center gap-3 mb-6">
+                            <span 
+                                className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-slate-900 text-white text-[10px] font-bold tracking-[0.2em] uppercase shadow-lg shadow-slate-900/20"
+                            >
+                                {SITE_DATA.slider[current].badge}
+                            </span>
+                            <div className="h-px bg-slate-200 flex-1 max-w-[100px]"></div>
+                        </div>
+
                         <h1 
-                            className="text-3xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight leading-tight max-w-2xl"
+                            className="text-4xl md:text-6xl lg:text-7xl font-black text-slate-900 mb-6 tracking-tighter leading-[0.95] max-w-3xl"
                         >
-                            {SITE_DATA.slider[current].title}
+                            {SITE_DATA.slider[current].title.split(' ').map((word, i) => (
+                                <span key={i} className="inline-block mr-3 hover:text-rose-600 transition-colors duration-300 cursor-default">
+                                    {word}
+                                </span>
+                            ))}
                         </h1>
                         <p 
-                            className="text-slate-500 text-sm md:text-base font-medium max-w-lg mb-8 leading-relaxed"
+                            className="text-slate-500 text-base md:text-lg font-medium max-w-xl mb-10 leading-relaxed"
                         >
                             {SITE_DATA.slider[current].sub}
                         </p>
                         
-                        <div className="flex gap-4">
-                             <button 
-                                className="btn-3d bg-gradient-to-r from-rose-600 to-rose-700 text-white px-6 py-3 rounded-xl text-sm font-bold shadow-xl shadow-rose-500/30"
+                        <div className="flex flex-wrap gap-4">
+                             <Link 
+                                to="/iletisim"
+                                className="btn-3d bg-slate-900 text-white px-8 py-4 rounded-2xl text-sm font-bold shadow-xl shadow-slate-900/20 hover:bg-rose-600 hover:shadow-rose-600/30 transition-all flex items-center gap-3"
                              >
-                                 Hemen Başvur
-                             </button>
-                             <button 
-                                className="btn-3d bg-slate-100 text-slate-700 px-6 py-3 rounded-xl text-sm font-bold shadow-lg"
+                                 Hemen Başvur <ChevronRight size={16} />
+                             </Link>
+                             <Link 
+                                to="/egitimlerimiz"
+                                className="btn-3d bg-white text-slate-900 border border-slate-200 px-8 py-4 rounded-2xl text-sm font-bold shadow-lg hover:bg-slate-50 transition-all"
                              >
-                                 Detaylı Bilgi
-                             </button>
+                                 Eğitimleri İncele
+                             </Link>
                         </div>
                     </div>
 
-                    {/* Slider Dots */}
-                    <div className="absolute bottom-8 right-8 flex gap-2">
+                    {/* Simple Slider Dots */}
+                    <div className="absolute bottom-10 right-10 flex gap-2 z-20">
                         {SITE_DATA.slider.map((_, i) => (
                             <button 
                                 key={i}
                                 onClick={() => setCurrent(i)}
-                                className={`h-1.5 rounded-full transition-all ${current === i ? 'w-6 bg-rose-600' : 'w-2 bg-slate-300'}`}
+                                aria-label={`Slide ${i + 1}`}
+                                className={`h-2 rounded-full transition-all duration-300 ${current === i ? 'w-8 bg-slate-900' : 'w-2 bg-slate-300 hover:bg-slate-400'}`}
                             />
                         ))}
                     </div>
@@ -77,41 +89,54 @@ const Hero = memo(() => {
                 {/* Right Side Cards */}
                 <div className="lg:col-span-4 flex flex-col gap-6">
                     {/* Education Calendar Mini with Image */}
-                    <div 
-                        className="tilt-3d bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-[2rem] p-8 flex-1 flex flex-col justify-between relative overflow-hidden group cursor-pointer border border-slate-700 animate-slide-up"
+                    <Link 
+                        to="/takvim"
+                        className="tilt-3d bg-slate-900 text-white rounded-[2.5rem] p-8 flex-1 flex flex-col justify-between relative overflow-hidden group cursor-pointer shadow-2xl shadow-slate-900/20 animate-slide-up"
                     >
-                        <div className="absolute inset-0 opacity-20">
-                            <OptimizedImage src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe" width={400} className="w-full h-full object-cover" alt="Calendar" />
+                        <div className="absolute inset-0 opacity-40 group-hover:opacity-30 transition-opacity duration-500">
+                            <OptimizedImage src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe" width={400} className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700" alt="Calendar" />
                         </div>
-                        <div className="relative z-10 scale-95 group-hover:scale-100 transition-transform">
-                            <Calendar className="text-rose-500 mb-4" size={32} />
-                            <h3 className="text-xl font-bold mb-2 uppercase tracking-tight">Eğitim Takvimi</h3>
-                            <p className="text-xs text-slate-400 font-medium">Güncel kurs başlangıç tarihlerini ve programları inceleyin.</p>
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
+                        
+                        <div className="relative z-10 flex justify-between items-start">
+                            <div className="bg-white/10 backdrop-blur-md p-3 rounded-2xl border border-white/10 group-hover:bg-rose-500 group-hover:text-white transition-colors duration-300">
+                                <Calendar size={24} />
+                            </div>
+                            <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:translate-x-1 transition-transform">
+                                <ChevronRight size={16} />
+                            </div>
                         </div>
-                        <Link to="/takvim" className="relative z-10 w-fit p-2 rounded-full bg-white/10 group-hover:bg-rose-600 transition-colors">
-                            <ChevronRight size={20} />
-                        </Link>
-                    </div>
+
+                        <div className="relative z-10 mt-auto">
+                            <h3 className="text-2xl font-bold mb-2 uppercase tracking-tight leading-none">Eğitim<br/>Takvimi</h3>
+                            <p className="text-xs text-slate-300 font-medium line-clamp-2">Güncel kurs başlangıç tarihlerini ve programları inceleyin.</p>
+                        </div>
+                    </Link>
 
                     {/* Contact Card */}
-                    <div className="tilt-3d bg-white rounded-[2rem] p-8 flex-1 flex flex-col justify-between relative overflow-hidden group cursor-pointer border border-slate-100 shadow-xl animate-slide-up stagger-1">
-                        <div className="absolute top-0 right-0 p-8 text-slate-50 group-hover:text-rose-50 transition-colors">
-                            <MessageCircle size={120} />
+                    <Link 
+                        to="/iletisim"
+                        className="tilt-3d bg-white rounded-[2.5rem] p-8 flex-1 flex flex-col justify-between relative overflow-hidden group cursor-pointer border border-white shadow-xl shadow-slate-200/50 animate-slide-up stagger-1 hover:border-rose-100"
+                    >
+                         <div className="absolute -right-6 -top-6 text-slate-50 group-hover:text-rose-50 transition-colors duration-500 rotate-12">
+                            <MessageCircle size={140} />
                         </div>
-                        <div className="relative z-10 scale-95 group-hover:scale-100 transition-transform">
-                            <h3 className="text-xl font-black text-slate-900 mb-2 uppercase tracking-tight">Soru Sorun</h3>
-                            <p className="text-xs text-slate-500 font-medium">WhatsApp üzerinden anında teknik destek ve bilgi alın.</p>
+                        
+                        <div className="relative z-10">
+                            <div className="inline-block px-3 py-1 rounded-lg bg-green-50 text-green-600 text-[10px] font-bold uppercase tracking-wider mb-4">Çevrimiçi</div>
+                            <h3 className="text-2xl font-black text-slate-900 mb-1 uppercase tracking-tight">Destek Hattı</h3>
                         </div>
-                        <div className="relative z-10 flex gap-4">
-                             <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white shadow-lg shadow-green-500/30 group-hover:animate-bounce">
-                                 <Phone size={18} />
+
+                        <div className="relative z-10 flex items-center gap-4 mt-auto">
+                             <div className="w-12 h-12 rounded-2xl bg-slate-900 text-white flex items-center justify-center shadow-lg group-hover:bg-rose-600 transition-colors duration-300">
+                                 <Phone size={20} />
                              </div>
-                             <div className="flex flex-col justify-center">
-                                 <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Çevrimiçi</span>
-                                 <span className="text-xs font-black text-slate-900">0312 231 31 35</span>
+                             <div>
+                                 <span className="block text-[10px] text-slate-400 font-bold uppercase tracking-widest">Hemen Arayın</span>
+                                 <span className="block text-lg font-black text-slate-900 tracking-tight">0312 231 31 35</span>
                              </div>
                         </div>
-                    </div>
+                    </Link>
                 </div>
             </div>
         </div>
@@ -238,9 +263,16 @@ const PopularCourses = memo(() => (
     </section>
 ));
 
+import SEO from '../components/SEO';
+
 const Home = () => {
     return (
         <div className="bg-slate-50 min-h-screen">
+            <SEO 
+                title="Ana Sayfa" 
+                description="ikiteknik Bilişim ile geleceğinizi şekillendirin. 3D Tarama, 3D Modelleme ve Profesyonel Teknik Eğitimler: AutoCAD, SolidWorks, Yazılım ve daha fazlası Ankara'da."
+                keywords="3d tarama, 3d modelleme, teknik eğitim, ankara kurs, autocad kursu, solidworks kursu, yazılım eğitimi, ikiteknik"
+            />
             <Hero />
             
             {/* Features Grid - Minimalist */}

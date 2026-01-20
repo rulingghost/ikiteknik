@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Scan, Layers, Camera, AlertCircle, ChevronRight, CheckCircle, ArrowRight, Sparkles, Target, Clock, Shield, Zap } from 'lucide-react';
+import { Scan, Layers, Camera, AlertCircle, ChevronRight, CheckCircle, ArrowRight, Sparkles, Target, Clock, Shield, Zap, Box } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 import OptimizedImage from '../components/OptimizedImage';
 import ImageLightbox from '../components/ImageLightbox';
 
 const Scanning3D = () => {
-  const [activeTab, setActiveTab] = useState('laser');
+  const [activeService, setActiveService] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -161,6 +162,11 @@ const Scanning3D = () => {
 
   return (
     <div className="bg-slate-50 min-h-screen">
+      <SEO 
+        title="3D Tarama Hizmetleri" 
+        description="Profesyonel 3D tarama hizmetleri: Lazer tarama, yapılandırılmış ışık, tersine mühendislik ve kalite kontrol için yüksek hassasiyetli dijitalleştirme çözümleri."
+        keywords="3d tarama, lazer tarama, tersine muhendislik, kalite kontrol, 3d scanning, dijitallestirme"
+      />
       {/* Hero Section */}
       <section className="pt-32 pb-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
         {/* Animated background elements */}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, ExternalLink, User, Calendar, Award, Filter, Search, TrendingUp, Maximize2 } from 'lucide-react';
 import OptimizedImage from '../components/OptimizedImage';
 import ImageLightbox from '../components/ImageLightbox';
+import SEO from '../components/SEO';
 
 const StudentWorks = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -115,6 +116,11 @@ const StudentWorks = () => {
 
   return (
     <div className="pt-24 pb-12 bg-gradient-to-br from-slate-50 via-white to-purple-50 min-h-screen font-sans relative overflow-hidden">
+        <SEO 
+            title="Öğrenci Çalışmaları" 
+            description="Öğrencilerimizin eğitimler sırasında ve sonrasında hazırladığı profesyonel 3D modelleme, render, teknik çizim ve tasarım projeleri galerisi."
+            keywords="ogrenci calismalari, 3d render, portfolyo, ogrenci projeleri, 3ds max render, solidworks cizimleri, ic mekan tasarimi"
+        />
       {/* Animated background */}
       <div 
         className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-purple-200/20 to-pink-200/20 rounded-full blur-3xl animate-pulse-slow"

@@ -3,6 +3,7 @@ import { Award, Target, CheckCircle, Globe, ChevronRight, TrendingUp, Zap, Heart
 import OptimizedImage from '../components/OptimizedImage';
 import { Link } from 'react-router-dom';
 import ImageLightbox from '../components/ImageLightbox';
+import SEO from '../components/SEO';
 
 const About = () => {
     const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -31,6 +32,11 @@ const About = () => {
 
     return (
         <div className="pt-24 pb-12 bg-gradient-to-br from-slate-50 via-white to-blue-50 min-h-screen font-sans relative overflow-hidden">
+            <SEO 
+                title="Hakkımızda" 
+                description="ikiteknik Bilişim: 2008'den beri Ankara'da teknoloji eğitiminin öncüsü. Uzman kadro, modern tesisler ve %95 istihdam oranıyla kariyerinizi güçlendiriyoruz."
+                keywords="hakkimizda, ikiteknik, bilisim egitim, ankara kurs merkezi, teknoloji egitimi"
+            />
             {/* Animated background */}
             <div 
                 className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-rose-200/20 to-orange-200/20 rounded-full blur-3xl animate-pulse-slow"

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FileText, ArrowUpRight, Tag, BookOpen, Mail, Clock, User, TrendingUp, X } from 'lucide-react';
 import OptimizedImage from '../components/OptimizedImage';
+import SEO from '../components/SEO';
 
 const Articles = () => {
     const [selectedArticle, setSelectedArticle] = useState(null);
@@ -98,6 +99,11 @@ const Articles = () => {
 
   return (
     <div className="pt-24 pb-12 bg-gradient-to-br from-slate-50 via-white to-rose-50 min-h-screen font-sans relative overflow-hidden">
+        <SEO 
+            title="Blog & Makaleler" 
+            description="ikiteknik Bilişim blog sayfası. 3D tasarım, mühendislik yazılımları, sektörel gelişmeler ve teknoloji haberleri hakkında güncel makaleler ve ipuçları."
+            keywords="teknoloji blogu, 3d tarama blog, muhendislik makaleleri, cad cam blog, egitim makaleleri, 3ds max ipuclari"
+        />
       {/* Animated background */}
       <div 
         className="absolute top-20 right-0 w-96 h-96 bg-gradient-to-br from-rose-200/20 to-purple-200/20 rounded-full blur-3xl animate-pulse-slow"
