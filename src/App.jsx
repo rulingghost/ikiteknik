@@ -29,7 +29,7 @@ const PageLoader = () => (
 );
 
 // Scroll to top on route change
-const ScrollToTop = () => {
+const RouteScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -40,7 +40,7 @@ const ScrollToTop = () => {
 function App() {
   return (
     <Router>
-      <ScrollToTop />
+      <RouteScrollToTop />
       <div className="antialiased bg-slate-50 text-slate-900 font-['Inter'] selection:bg-rose-500 selection:text-white">
         <Navbar />
         <main>
