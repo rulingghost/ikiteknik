@@ -105,7 +105,7 @@ const Navbar = () => {
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
+
           <div className="hidden xl:flex items-center gap-1">
             <div className="flex items-center bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 border border-slate-100 shadow-sm">
               {navItems.map((item) => (
@@ -126,12 +126,7 @@ const Navbar = () => {
               ))}
             </div>
             
-            <Link 
-              to="/iletisim"
-              className="ml-4 bg-slate-900 hover:bg-rose-600 text-white px-6 py-3 rounded-full text-[11px] font-bold tracking-widest uppercase shadow-lg shadow-slate-900/20 hover:shadow-rose-600/30 active:scale-95 transition-all duration-300 flex items-center gap-2"
-            >
-              Kayıt Ol <ChevronRight size={14} />
-            </Link>
+
           </div>
 
           {/* Mobile Menu Button */}
@@ -182,11 +177,11 @@ const Navbar = () => {
 
             <div className="mt-auto pt-8 border-t border-slate-100">
                 <Link 
-                    to="/iletisim"
+                    to="/teklif-al"
                     onClick={() => setIsOpen(false)}
                     className="w-full bg-slate-900 text-white py-4 rounded-xl font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-2 shadow-xl shadow-slate-900/10 active:scale-95 transition-all"
                 >
-                    Hemen Başvur
+                    Hızlı Teklif Al
                 </Link>
                 <div className="mt-6 flex justify-center gap-6 text-slate-400">
                     <Facebook size={18} className="hover:text-rose-600 transition-colors" />

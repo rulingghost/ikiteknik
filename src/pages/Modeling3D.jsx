@@ -214,12 +214,12 @@ const Modeling3D = () => {
                 Hizmetleri Keşfet
                 <ArrowRight size={20} />
               </a>
-              <a 
-                href="#contact"
+              <Link 
+                to="/teklif-al"
                 className="btn-3d bg-white/10 backdrop-blur-xl text-white border-2 border-white/20 px-12 py-5 rounded-3xl text-lg font-black uppercase tracking-widest shadow-2xl inline-flex items-center gap-3 justify-center"
               >
                 Teklif Al
-              </a>
+              </Link>
             </div>
           </div>
         </div>

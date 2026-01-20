@@ -17,6 +17,7 @@ const Calendar = lazy(() => import('./pages/Calendar'));
 const PearsonVue = lazy(() => import('./pages/PearsonVue'));
 const Scanning3D = lazy(() => import('./pages/Scanning3D'));
 const Modeling3D = lazy(() => import('./pages/Modeling3D'));
+const GetQuote = lazy(() => import('./pages/GetQuote'));
 
 // Loading component
 const PageLoader = () => (
@@ -56,6 +57,7 @@ function App() {
               <Route path="/pearson" element={<PearsonVue />} />
               <Route path="/3d-tarama" element={<Scanning3D />} />
               <Route path="/3d-modelleme" element={<Modeling3D />} />
+              <Route path="/teklif-al" element={<GetQuote />} />
               <Route path="*" element={<Home />} />
             </Routes>
           </Suspense>
@@ -65,16 +67,7 @@ function App() {
         <ScrollToTop />
 
         {/* Fixed WhatsApp Support Button */}
-        <a 
-          href={`https://wa.me/${SITE_DATA.contact.whatsapp.replace(/[^0-9]/g, '')}`} 
-          target="_blank" 
-          rel="noreferrer"
-          className="fixed bottom-6 right-6 bg-[#25d366] text-white p-3 rounded-full shadow-xl hover:scale-110 active:scale-95 transition-all z-50 flex items-center gap-2 group"
-        >
-          <MessageCircle size={20} />
-          <span className="hidden group-hover:block text-xs font-bold whitespace-nowrap pr-2">WhatsApp</span>
-          <span className="absolute inset-0 bg-green-400/20 rounded-full animate-ping group-hover:hidden" />
-        </a>
+
       </div>
     </Router>
   );
