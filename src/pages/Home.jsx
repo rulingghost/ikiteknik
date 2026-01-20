@@ -290,6 +290,184 @@ const Home = () => {
              {/* 3D Technology Showcase */}
              <TechnologyShowcase />
 
+             {/* 3D Scanning Services Section - NEW */}
+             <section className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+                {/* Animated background elements */}
+                <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-rose-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse-slow" />
+                <div className="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl animate-pulse-slow stagger-1" />
+                
+                <div className="container mx-auto px-6 relative z-10">
+                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                        {/* Content */}
+                        <div className="animate-slide-up">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-xl rounded-full border border-white/20 mb-6">
+                                <span className="w-2 h-2 bg-rose-500 rounded-full animate-pulse"></span>
+                                <span className="text-white text-xs font-bold tracking-widest uppercase">Yeni Hizmet</span>
+                            </div>
+                            
+                            <h2 className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tighter uppercase italic leading-tight">
+                                Profesyonel <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-400">3D Tarama</span> Hizmetleri
+                            </h2>
+                            
+                            <p className="text-slate-300 text-base md:text-lg font-medium leading-relaxed mb-8">
+                                Fiziksel nesneleri yüksek hassasiyetli sensörler ve kameralar kullanarak dijital ortama aktarıyoruz. 
+                                Tersine mühendislik, kalite kontrol, restorasyon ve prototip geliştirme için profesyonel çözümler sunuyoruz.
+                            </p>
+
+                            <div className="grid grid-cols-2 gap-4 mb-8">
+                                {[
+                                    { icon: '🎯', title: 'Lazer Tarama', desc: 'Yüksek hassasiyet' },
+                                    { icon: '💡', title: 'Yapılandırılmış Işık', desc: 'Detaylı parçalar' },
+                                    { icon: '📱', title: 'El Tipi Tarama', desc: 'Sahada tarama' },
+                                    { icon: '📸', title: 'Fotogrametri', desc: 'Geniş alanlar' }
+                                ].map((service, idx) => (
+                                    <div key={idx} className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10 hover:bg-white/10 transition-all group">
+                                        <div className="text-2xl mb-2">{service.icon}</div>
+                                        <h3 className="text-white text-sm font-bold mb-1">{service.title}</h3>
+                                        <p className="text-slate-400 text-xs font-medium">{service.desc}</p>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="flex flex-col sm:flex-row gap-4">
+                                <Link 
+                                    to="/3d-tarama"
+                                    className="btn-3d bg-gradient-to-r from-rose-600 to-pink-600 text-white px-8 py-4 rounded-2xl text-sm font-black uppercase tracking-widest shadow-2xl shadow-rose-500/30 inline-flex items-center gap-3 justify-center"
+                                >
+                                    Detaylı Bilgi
+                                    <ChevronRight size={20} />
+                                </Link>
+                                <Link 
+                                    to="/iletisim"
+                                    className="btn-3d bg-white/10 backdrop-blur-xl text-white border-2 border-white/20 px-8 py-4 rounded-2xl text-sm font-black uppercase tracking-widest shadow-2xl inline-flex items-center gap-3 justify-center"
+                                >
+                                    Teklif Al
+                                </Link>
+                            </div>
+                        </div>
+
+                        {/* Image Grid */}
+                        <div className="grid grid-cols-2 gap-4 animate-slide-up stagger-1">
+                            {[
+                                { img: '/images/3d-tarama/WhatsApp Image 2026-01-20 at 16.18.30 (1).jpeg', title: 'Lazer Tarama' },
+                                { img: '/images/3d-tarama/WhatsApp Image 2026-01-20 at 16.18.30 (5).jpeg', title: 'Yapılandırılmış Işık' },
+                                { img: '/images/3d-tarama/WhatsApp Image 2026-01-20 at 16.18.30 (8).jpeg', title: 'El Tipi Tarama' },
+                                { img: '/images/3d-tarama/WhatsApp Image 2026-01-20 at 16.18.30 (12).jpeg', title: 'Fotogrametri' }
+                            ].map((item, idx) => (
+                                <div 
+                                    key={idx}
+                                    className="tilt-3d group relative rounded-2xl overflow-hidden shadow-2xl cursor-pointer"
+                                    style={{ animationDelay: `${idx * 0.1}s` }}
+                                >
+                                    <div className="aspect-square relative">
+                                        <OptimizedImage 
+                                            src={item.img}
+                                            width={300}
+                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                            alt={item.title}
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-br from-rose-600/60 to-purple-600/60 opacity-60 group-hover:opacity-80 transition-opacity" />
+                                        <div className="absolute inset-0 flex items-center justify-center">
+                                            <h3 className="text-white text-sm font-black tracking-tight drop-shadow-2xl text-center px-4">
+                                                {item.title}
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+             </section>
+
+             {/* 3D Modeling Services Section - NEW */}
+             <section className="py-24 bg-white relative overflow-hidden">
+                <div className="absolute -top-20 -right-20 w-96 h-96 bg-gradient-to-br from-purple-300/20 to-pink-300/20 rounded-full blur-3xl animate-pulse-slow" />
+                
+                <div className="container mx-auto px-6 relative z-10">
+                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                        {/* Image Grid */}
+                        <div className="grid grid-cols-2 gap-4 animate-slide-up">
+                            {[
+                                { img: '/images/3d-modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (14).jpeg', title: 'Ürün Modelleme' },
+                                { img: '/images/3d-modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (20).jpeg', title: 'Endüstriyel' },
+                                { img: '/images/3d-modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (24).jpeg', title: '3D Baskı' },
+                                { img: '/images/3d-modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (30).jpeg', title: 'Tersine Mühendislik' }
+                            ].map((item, idx) => (
+                                <div 
+                                    key={idx}
+                                    className="tilt-3d group relative rounded-2xl overflow-hidden shadow-2xl cursor-pointer"
+                                    style={{ animationDelay: `${idx * 0.1}s` }}
+                                >
+                                    <div className="aspect-square relative">
+                                        <OptimizedImage 
+                                            src={item.img}
+                                            width={300}
+                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                            alt={item.title}
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/60 to-pink-600/60 opacity-60 group-hover:opacity-80 transition-opacity" />
+                                        <div className="absolute inset-0 flex items-center justify-center">
+                                            <h3 className="text-white text-sm font-black tracking-tight drop-shadow-2xl text-center px-4">
+                                                {item.title}
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Content */}
+                        <div className="animate-slide-up stagger-1">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-50 rounded-full border border-purple-200 mb-6">
+                                <span className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></span>
+                                <span className="text-purple-700 text-xs font-bold tracking-widest uppercase">Profesyonel Hizmet</span>
+                            </div>
+                            
+                            <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tighter uppercase italic leading-tight">
+                                3D <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">Modelleme</span> Hizmetleri
+                            </h2>
+                            
+                            <p className="text-slate-600 text-base md:text-lg font-medium leading-relaxed mb-8">
+                                Fikir ve tasarımlarınızı dijital ortamda üç boyutlu, detaylı ve gerçekçi modeller haline getiriyoruz. 
+                                Ürünler, yapılar veya objeler üretim aşamasına geçmeden önce net bir şekilde görselleştirilebilir.
+                            </p>
+
+                            <div className="grid grid-cols-2 gap-4 mb-8">
+                                {[
+                                    { icon: '📦', title: 'Ürün Modelleme', desc: 'Detaylı ürün tasarımı' },
+                                    { icon: '⚙️', title: 'Endüstriyel', desc: 'Teknik hassasiyet' },
+                                    { icon: '🖨️', title: '3D Baskı', desc: 'Baskıya hazır' },
+                                    { icon: '🔄', title: 'Tersine Mühendislik', desc: 'Dijital dönüşüm' }
+                                ].map((service, idx) => (
+                                    <div key={idx} className="bg-slate-50 rounded-2xl p-4 border border-slate-100 hover:bg-purple-50 hover:border-purple-200 transition-all group">
+                                        <div className="text-2xl mb-2">{service.icon}</div>
+                                        <h3 className="text-slate-900 text-sm font-bold mb-1">{service.title}</h3>
+                                        <p className="text-slate-500 text-xs font-medium">{service.desc}</p>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="flex flex-col sm:flex-row gap-4">
+                                <Link 
+                                    to="/3d-modelleme"
+                                    className="btn-3d bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-2xl text-sm font-black uppercase tracking-widest shadow-2xl shadow-purple-500/30 inline-flex items-center gap-3 justify-center"
+                                >
+                                    Detaylı Bilgi
+                                    <ChevronRight size={20} />
+                                </Link>
+                                <Link 
+                                    to="/iletisim"
+                                    className="btn-3d bg-slate-100 text-slate-700 border-2 border-slate-200 px-8 py-4 rounded-2xl text-sm font-black uppercase tracking-widest shadow-xl inline-flex items-center gap-3 justify-center"
+                                >
+                                    Teklif Al
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </section>
+
              {/* 3D Course Preview Cards */}
              <PopularCourses />
 

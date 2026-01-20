@@ -4,6 +4,7 @@ import { MessageCircle } from 'lucide-react';
 import { SITE_DATA } from './constants';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 // Lazy load all pages for faster initial load
 const Home = lazy(() => import('./pages/Home'));
@@ -14,6 +15,8 @@ const Articles = lazy(() => import('./pages/Articles'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Calendar = lazy(() => import('./pages/Calendar'));
 const PearsonVue = lazy(() => import('./pages/PearsonVue'));
+const Scanning3D = lazy(() => import('./pages/Scanning3D'));
+const Modeling3D = lazy(() => import('./pages/Modeling3D'));
 
 // Loading component
 const PageLoader = () => (
@@ -51,12 +54,16 @@ function App() {
               <Route path="/iletisim" element={<Contact />} />
               <Route path="/takvim" element={<Calendar />} />
               <Route path="/pearson" element={<PearsonVue />} />
+              <Route path="/3d-tarama" element={<Scanning3D />} />
+              <Route path="/3d-modelleme" element={<Modeling3D />} />
               <Route path="*" element={<Home />} />
             </Routes>
           </Suspense>
         </main>
         <Footer />
         
+        <ScrollToTop />
+
         {/* Fixed WhatsApp Support Button */}
         <a 
           href={`https://wa.me/${SITE_DATA.contact.whatsapp.replace(/[^0-9]/g, '')}`} 

@@ -12,6 +12,8 @@ const Footer = () => {
         { id: "it", title: "Bilgisayar & IT" },
         { id: "animation", title: "Animasyon" },
         { id: "graphics", title: "Grafik & Web Tasarım" },
+        { id: "3d-scanning", title: "3D Tarama Hizmetleri", isService: true, link: "/3d-tarama" },
+        { id: "3d-modeling", title: "3D Modelleme Hizmetleri", isService: true, link: "/3d-modelleme" },
         { id: "analysis", title: "Analiz" },
         { id: "quality", title: "Kalite" },
         { id: "corporate_edu", title: "Kurumsal Eğitimler" },
@@ -25,6 +27,38 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-24 border-b border-slate-200 pb-20">
                     {footerSections.map((section, idx) => {
                         const cat = getCat(section.id);
+                        
+                        // Special handling for 3D services
+                        if (section.isService) {
+                            const serviceItems = section.id === '3d-scanning' 
+                                ? ['Lazer 3D Tarama', 'Beyaz Işık Tarama', 'El Tipi 3D Tarama', 'Fotogrametri']
+                                : ['Ürün 3D Modelleme', 'Endüstriyel Modelleme', '3D Baskıya Uygun Model', 'Tersine Mühendislik'];
+                            
+                            return (
+                                <div 
+                                    key={section.id}
+                                    className="space-y-6 animate-fade-in"
+                                    style={{ animationDelay: `${idx * 0.1}s` }}
+                                >
+                                    <h4 className="text-slate-900 font-black text-[11px] uppercase tracking-[0.2em] border-l-4 border-rose-600 pl-4 mb-8">
+                                        {section.title.toUpperCase()}
+                                    </h4>
+                                    <ul className="space-y-3">
+                                        {serviceItems.map(service => (
+                                            <li key={service}>
+                                                <Link 
+                                                    to={section.link} 
+                                                    className="text-slate-500 hover:text-rose-600 hover:translate-x-1 text-[10px] font-bold uppercase transition-all block"
+                                                >
+                                                    {service}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            );
+                        }
+                        
                         return (
                             <div 
                                 key={section.id}

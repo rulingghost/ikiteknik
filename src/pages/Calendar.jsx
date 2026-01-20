@@ -1,10 +1,12 @@
 import React from 'react';
 import { Calendar as CalIcon, Clock, ArrowRight, User, MapPin, Award } from 'lucide-react';
 import OptimizedImage from '../components/OptimizedImage';
+import { Link } from 'react-router-dom';
 
 const Calendar = () => {
     const events = [
         {
+            id: '3ds-max',
             date: { d: '15', m: 'Ocak' },
             title: '3DS Max Mimari Görselleştirme',
             time: '18:30 - 21:30',
@@ -16,6 +18,7 @@ const Calendar = () => {
             instructorImg: 'https://images.unsplash.com/photo-1560250097-0b93528c311a'
         },
         {
+            id: 'solidworks-advanced',
             date: { d: '22', m: 'Ocak' },
             title: 'SolidWorks İleri Seviye',
             time: '19:00 - 22:00',
@@ -27,6 +30,7 @@ const Calendar = () => {
             instructorImg: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d'
         },
         {
+            id: 'revit',
             date: { d: '05', m: 'Şubat' },
             title: 'Revit Architecture',
             time: '09:00 - 13:00',
@@ -38,6 +42,7 @@ const Calendar = () => {
             instructorImg: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2'
         },
         {
+            id: 'autocad',
             date: { d: '12', m: 'Şubat' },
             title: 'AutoCAD Temel Eğitim',
             time: '18:30 - 21:30',
@@ -49,6 +54,7 @@ const Calendar = () => {
             instructorImg: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7'
         },
         {
+            id: 'python',
             date: { d: '20', m: 'Şubat' },
             title: 'Python Programlama',
             time: '19:00 - 22:00',
@@ -60,6 +66,7 @@ const Calendar = () => {
             instructorImg: 'https://images.unsplash.com/photo-1580489944761-15a19d654956'
         },
         {
+            id: 'graphic-design',
             date: { d: '28', m: 'Şubat' },
             title: 'Grafik Tasarım Bootcamp',
             time: '10:00 - 17:00',
@@ -73,10 +80,10 @@ const Calendar = () => {
     ];
 
   return (
-    <div className="pt-24 pb-12 bg-gradient-to-br from-slate-50 via-white to-indigo-50 min-h-screen font-sans relative overflow-hidden">
+    <div className="pt-24 pb-12 bg-gradient-to-br from-slate-50 via-white to-rose-50 min-h-screen font-sans relative overflow-hidden">
       {/* Animated background */}
       <div 
-        className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-indigo-200/20 to-purple-200/20 rounded-full blur-3xl animate-pulse-slow"
+        className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-rose-200/20 to-purple-200/20 rounded-full blur-3xl animate-pulse-slow"
       />
       
       <div className="container mx-auto px-6 relative z-10">
@@ -86,7 +93,7 @@ const Calendar = () => {
           className="flex flex-col md:flex-row justify-between items-end mb-12 animate-fade-in"
         >
             <div>
-                <div className="inline-block px-3 py-1 rounded-lg bg-gradient-to-r from-indigo-500 to-indigo-600 text-white text-[10px] font-bold tracking-widest uppercase mb-2 shadow-lg">Canlı Dersler</div>
+                <div className="inline-block px-3 py-1 rounded-lg bg-gradient-to-r from-rose-500 to-rose-600 text-white text-[10px] font-bold tracking-widest uppercase mb-2 shadow-lg">Canlı Dersler</div>
                 <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Eğitim Takvimi</h1>
                 <p className="text-slate-500 text-sm mt-2">Yaklaşan eğitim programları ve kayıt bilgileri</p>
             </div>
@@ -100,7 +107,7 @@ const Calendar = () => {
             {events.map((evt, idx) => (
                 <div
                     key={idx}
-                    className={`group bg-white rounded-[1.5rem] border border-slate-100 flex flex-col md:flex-row gap-6 items-stretch overflow-hidden animate-slide-up ${evt.status === 'full' ? 'opacity-60' : 'hover:border-indigo-100 hover:shadow-2xl hover:-translate-y-1 transition-all shadow-lg'}`}
+                    className={`group bg-white rounded-[1.5rem] border border-slate-100 flex flex-col md:flex-row gap-6 items-stretch overflow-hidden animate-slide-up ${evt.status === 'full' ? 'opacity-60' : 'hover:border-rose-100 hover:shadow-2xl hover:-translate-y-1 transition-all shadow-lg'}`}
                     style={{ animationDelay: `${idx * 0.1}s`, transformStyle: "preserve-3d" }}
                 >
                     {/* Course Image */}
@@ -124,14 +131,14 @@ const Calendar = () => {
                     {/* Info */}
                     <div className="flex-1 p-6 flex flex-col justify-between">
                         <div>
-                            <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors">{evt.title}</h3>
+                            <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-rose-600 transition-colors">{evt.title}</h3>
                             <div className="flex flex-wrap gap-3 text-xs font-medium text-slate-500 mb-4">
                                  <div className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-lg">
-                                     <Clock size={14} className="text-indigo-500" /> {evt.days} / {evt.time}
+                                     <Clock size={14} className="text-rose-500" /> {evt.days} / {evt.time}
                                  </div>
                                  {evt.status !== 'full' && (
                                     <div 
-                                        className="flex items-center gap-1.5 bg-rose-50 px-3 py-1.5 rounded-lg text-rose-600 animate-pulse"
+                                        className="flex items-center gap-1.5 bg-green-50 px-3 py-1.5 rounded-lg text-green-600 animate-pulse"
                                     >
                                         <User size={14} /> {evt.quota} Kişilik Yer Kaldı
                                     </div>
@@ -160,11 +167,12 @@ const Calendar = () => {
                                 Kontenjan Dolu
                             </span>
                         ) : (
-                            <button 
-                                className="px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-700 text-white text-xs font-bold uppercase tracking-wider hover:from-indigo-700 hover:to-indigo-800 hover:scale-105 hover:translate-x-1 active:scale-95 transition-all flex items-center gap-2 shadow-xl shadow-indigo-500/30"
+                            <Link 
+                                to={`/iletisim?subject=kayit&course=${evt.id}`}
+                                className="px-6 py-3 rounded-xl bg-gradient-to-r from-rose-600 to-rose-700 text-white text-xs font-bold uppercase tracking-wider hover:from-rose-700 hover:to-rose-800 hover:scale-105 hover:translate-x-1 active:scale-95 transition-all flex items-center gap-2 shadow-xl shadow-rose-500/30"
                             >
                                 Kayıt Ol <ArrowRight size={14} />
-                            </button>
+                            </Link>
                         )}
                     </div>
                 </div>
@@ -180,22 +188,23 @@ const Calendar = () => {
                 className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-xl relative overflow-hidden hover:scale-[1.02] hover:rotate-1 transition-all duration-300"
                 style={{ transformStyle: "preserve-3d" }}
             >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-indigo-100 to-transparent rounded-bl-full opacity-50" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-rose-100 to-transparent rounded-bl-full opacity-50" />
                 <div className="relative z-10">
                     <div className="flex items-center gap-3 mb-4">
                         <div
-                            className="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 animate-spin-slow"
+                            className="w-12 h-12 bg-rose-50 rounded-xl flex items-center justify-center text-rose-600 animate-spin-slow"
                         >
                             <Award size={24} />
                         </div>
                         <h3 className="text-lg font-bold text-slate-900">Sertifika Programları</h3>
                     </div>
                     <p className="text-slate-500 text-sm mb-6">Tüm eğitimlerimiz sonunda MEB onaylı sertifika verilmektedir.</p>
-                    <button
-                        className="text-indigo-600 text-xs font-bold flex items-center gap-2 hover:gap-3 transition-all"
+                    <Link
+                        to="/egitimlerimiz"
+                        className="text-rose-600 text-xs font-bold flex items-center gap-2 hover:gap-3 transition-all"
                     >
                         Detaylı Bilgi <ArrowRight size={14} />
-                    </button>
+                    </Link>
                 </div>
             </div>
 
@@ -217,11 +226,12 @@ const Calendar = () => {
                         <h3 className="text-lg font-bold">Bize Ulaşın</h3>
                     </div>
                     <p className="text-slate-400 text-sm mb-6">Eğitimler hakkında detaylı bilgi almak için.</p>
-                    <button
-                        className="w-full bg-white text-slate-900 py-3 rounded-xl font-bold text-sm hover:bg-rose-50 hover:scale-105 active:scale-95 transition-all shadow-lg"
+                    <Link
+                        to="/iletisim"
+                        className="w-full bg-white text-slate-900 py-3 rounded-xl font-bold text-sm hover:bg-rose-50 hover:scale-105 active:scale-95 transition-all shadow-lg flex items-center justify-center"
                     >
                         İletişime Geç
-                    </button>
+                    </Link>
                 </div>
             </div>
         </div>

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { X, ExternalLink, User, Calendar, Award, Filter, Search, TrendingUp } from 'lucide-react';
+import { X, ExternalLink, User, Calendar, Award, Filter, Search, TrendingUp, Maximize2 } from 'lucide-react';
 import OptimizedImage from '../components/OptimizedImage';
+import ImageLightbox from '../components/ImageLightbox';
 
 const StudentWorks = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedProject, setSelectedProject] = useState(null);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const projects = [
     {
@@ -241,7 +243,7 @@ const StudentWorks = () => {
           </div>
         </div>
 
-        {/* Modal */}
+        {/* Project Detail Modal */}
         {selectedProject && (
           <div
             onClick={() => setSelectedProject(null)}
@@ -251,18 +253,28 @@ const StudentWorks = () => {
               onClick={(e) => e.stopPropagation()}
               className="bg-white rounded-[2rem] max-w-3xl w-full overflow-hidden shadow-2xl animate-modal-content"
             >
-              <div className="aspect-video relative">
+              <div className="aspect-video relative group cursor-zoom-in" onClick={() => setLightboxOpen(true)}>
                 <OptimizedImage
                   src={selectedProject.image}
                   alt={selectedProject.title}
                   className="w-full h-full object-cover"
                 />
                 <button
-                  onClick={() => setSelectedProject(null)}
-                  className="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-slate-900 shadow-xl hover:bg-white hover:rotate-90 hover:scale-110 active:scale-95 transition-all"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedProject(null);
+                  }}
+                  className="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-slate-900 shadow-xl hover:bg-white hover:rotate-90 hover:scale-110 active:scale-95 transition-all z-20"
                 >
                   <X size={20} />
                 </button>
+                
+                {/* Zoom Indicator */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20 backdrop-blur-[2px]">
+                   <div className="bg-white/20 p-4 rounded-full backdrop-blur-md border border-white/30 text-white">
+                      <Maximize2 size={32} />
+                   </div>
+                </div>
               </div>
 
               <div className="p-8">
@@ -311,6 +323,17 @@ const StudentWorks = () => {
               </div>
             </div>
           </div>
+        )}
+
+        {/* Fullscreen Lightbox */}
+        {lightboxOpen && selectedProject && (
+          <ImageLightbox
+            images={[selectedProject.image]}
+            currentIndex={0}
+            onClose={() => setLightboxOpen(false)}
+            onNext={() => {}}
+            onPrev={() => {}}
+          />
         )}
       </div>
     </div>

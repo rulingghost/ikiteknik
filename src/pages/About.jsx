@@ -1,8 +1,13 @@
-import React from 'react';
-import { Award, Target, CheckCircle, Globe, ChevronRight, TrendingUp, Zap, Heart } from 'lucide-react';
+import React, { useState } from 'react';
+import { Award, Target, CheckCircle, Globe, ChevronRight, TrendingUp, Zap, Heart, Maximize2 } from 'lucide-react';
 import OptimizedImage from '../components/OptimizedImage';
+import { Link } from 'react-router-dom';
+import ImageLightbox from '../components/ImageLightbox';
 
 const About = () => {
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
     const teamImages = [
         'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2',
         'https://images.unsplash.com/photo-1560250097-0b93528c311a',
@@ -18,6 +23,11 @@ const About = () => {
         'https://images.unsplash.com/photo-1524178232363-1fb2b075b655',
         'https://images.unsplash.com/photo-1497366811353-6870744d04b2',
     ];
+
+    const openLightbox = (index) => {
+        setCurrentImageIndex(index);
+        setLightboxOpen(true);
+    };
 
     return (
         <div className="pt-24 pb-12 bg-gradient-to-br from-slate-50 via-white to-blue-50 min-h-screen font-sans relative overflow-hidden">
@@ -69,11 +79,12 @@ const About = () => {
                              </div>
                         </div>
 
-                        <button
-                            className="bg-gradient-to-r from-rose-600 to-rose-700 text-white px-8 py-3 rounded-xl text-sm font-bold shadow-xl shadow-rose-500/30 flex items-center gap-2 hover:scale-105 active:scale-95 hover:translate-x-1 transition-all"
+                        <Link
+                            to="/egitimlerimiz"
+                            className="inline-flex bg-gradient-to-r from-rose-600 to-rose-700 text-white px-8 py-3 rounded-xl text-sm font-bold shadow-xl shadow-rose-500/30 items-center gap-2 hover:scale-105 active:scale-95 hover:translate-x-1 transition-all"
                         >
-                            Daha Fazla Bilgi <ChevronRight size={16} />
-                        </button>
+                            Eğitimleri İncele <ChevronRight size={16} />
+                        </Link>
                     </div>
                     
                     {/* Image Grid */}
@@ -210,10 +221,16 @@ const About = () => {
                         {facilityImages.map((img, i) => (
                             <div
                                 key={i}
-                                className="aspect-square rounded-2xl overflow-hidden shadow-xl cursor-pointer hover:scale-105 hover:rotate-2 transition-all duration-300 animate-scale-in"
+                                onClick={() => openLightbox(i)}
+                                className="aspect-square rounded-2xl overflow-hidden shadow-xl cursor-pointer hover:scale-105 hover:rotate-2 transition-all duration-300 animate-scale-in group relative"
                                 style={{ animationDelay: `${i * 0.1}s` }}
                             >
                                 <OptimizedImage src={img} className="w-full h-full object-cover" alt={`Facility ${i + 1}`} />
+                                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <div className="bg-white/20 p-3 rounded-full backdrop-blur-md border border-white/30 text-white">
+                                        <Maximize2 size={24} />
+                                    </div>
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -269,8 +286,24 @@ const About = () => {
                         ))}
                     </div>
                 </div>
-
             </div>
+
+            {/* Lightbox for Facilities */}
+            {lightboxOpen && (
+                <ImageLightbox
+                    images={facilityImages}
+                    currentIndex={currentImageIndex}
+                    onClose={() => setLightboxOpen(false)}
+                    onNext={(step = 1) => {
+                        const newIndex = (currentImageIndex + step + facilityImages.length) % facilityImages.length;
+                        setCurrentImageIndex(newIndex);
+                    }}
+                    onPrev={() => {
+                        const newIndex = (currentImageIndex - 1 + facilityImages.length) % facilityImages.length;
+                        setCurrentImageIndex(newIndex);
+                    }}
+                />
+            )}
         </div>
     );
 };

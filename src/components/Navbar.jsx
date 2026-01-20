@@ -16,6 +16,8 @@ const Navbar = () => {
 
   const navItems = [
     { label: 'Eğitimlerimiz', path: '/egitimlerimiz' },
+    { label: '3D Tarama', path: '/3d-tarama' },
+    { label: '3D Modelleme', path: '/3d-modelleme' },
     { label: 'Eğitim Takvimi', path: '/takvim' },
     { label: 'Öğrenci Çalışmaları', path: '/calismalar' },
     { label: 'Makaleler', path: '/makaleler' },

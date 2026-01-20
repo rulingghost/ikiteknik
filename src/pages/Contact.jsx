@@ -4,6 +4,53 @@ import { SITE_DATA } from '../constants';
 import OptimizedImage from '../components/OptimizedImage';
 
 const Contact = () => {
+  const [formData, setFormData] = React.useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    subject: 'Genel Bilgi',
+    message: ''
+  });
+  
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [submitStatus, setSubmitStatus] = React.useState(null); // 'success' | 'error' | null
+  
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+    
+    // Simulate API call
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Here you would normally send the data to your backend
+      console.log('Form submitted:', formData);
+      
+      setSubmitStatus('success');
+      // Reset form
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        subject: 'Genel Bilgi',
+        message: ''
+      });
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+  
   const officeImages = [
     'https://images.unsplash.com/photo-1497366216548-37526070297c',
     'https://images.unsplash.com/photo-1497366754035-f200968a6e72',
@@ -143,12 +190,16 @@ const Contact = () => {
                     <h3 className="text-xl font-bold text-slate-900 mb-2">Mesaj Gönderin</h3>
                     <p className="text-slate-500 text-xs mb-6">Size en kısa sürede dönüş yapacağız.</p>
                     
-                    <form className="space-y-4">
+                    <form className="space-y-4" onSubmit={handleSubmit}>
                         <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-1">
                                 <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider ml-1">Adınız</label>
                                 <input 
-                                    type="text" 
+                                    type="text"
+                                    name="firstName"
+                                    value={formData.firstName}
+                                    onChange={handleInputChange}
+                                    required
                                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold focus:outline-none focus:border-rose-500 focus:bg-white focus:scale-[1.02] transition-all text-slate-900 shadow-sm" 
                                     placeholder="İsim" 
                                 />
@@ -156,7 +207,11 @@ const Contact = () => {
                             <div className="space-y-1">
                                 <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider ml-1">Soyadınız</label>
                                 <input 
-                                    type="text" 
+                                    type="text"
+                                    name="lastName"
+                                    value={formData.lastName}
+                                    onChange={handleInputChange}
+                                    required
                                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold focus:outline-none focus:border-rose-500 focus:bg-white focus:scale-[1.02] transition-all text-slate-900 shadow-sm" 
                                     placeholder="Soyisim" 
                                 />
@@ -165,36 +220,71 @@ const Contact = () => {
                         <div className="space-y-1">
                             <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider ml-1">E-Posta</label>
                             <input 
-                                type="email" 
+                                type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleInputChange}
+                                required
                                 className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold focus:outline-none focus:border-rose-500 focus:bg-white focus:scale-[1.02] transition-all text-slate-900 shadow-sm" 
                                 placeholder="ornek@email.com" 
                             />
                         </div>
                         <div className="space-y-1">
                             <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider ml-1">Konu</label>
-                            <select 
+                            <select
+                                name="subject"
+                                value={formData.subject}
+                                onChange={handleInputChange}
                                 className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold focus:outline-none focus:border-rose-500 focus:bg-white focus:scale-[1.02] transition-all text-slate-900 shadow-sm"
                             >
                                 <option>Genel Bilgi</option>
                                 <option>Kayıt Olmak İstiyorum</option>
                                 <option>Eğitim Takvimi</option>
                                 <option>Kurumsal Eğitim</option>
+                                <option>3D Tarama Hizmeti</option>
+                                <option>3D Modelleme Hizmeti</option>
                             </select>
                         </div>
                         <div className="space-y-1">
                             <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider ml-1">Mesajınız</label>
-                            <textarea 
+                            <textarea
+                                name="message"
+                                value={formData.message}
+                                onChange={handleInputChange}
+                                required
                                 rows={4} 
                                 className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold focus:outline-none focus:border-rose-500 focus:bg-white focus:scale-[1.02] transition-all resize-none text-slate-900 shadow-sm" 
                                 placeholder="Sorunuzu buraya yazın..." 
                             />
                         </div>
                         
+                        {/* Success/Error Messages */}
+                        {submitStatus === 'success' && (
+                            <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-xl text-sm font-medium animate-fade-in">
+                                ✓ Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.
+                            </div>
+                        )}
+                        {submitStatus === 'error' && (
+                            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm font-medium animate-fade-in">
+                                ✗ Bir hata oluştu. Lütfen tekrar deneyin.
+                            </div>
+                        )}
+                        
                         <button 
-                            type="button" 
-                            className="w-full py-4 bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-700 hover:to-rose-800 text-white rounded-xl font-bold text-sm hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-xl shadow-rose-500/30"
+                            type="submit"
+                            disabled={isSubmitting}
+                            className={`w-full py-4 bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-700 hover:to-rose-800 text-white rounded-xl font-bold text-sm hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-xl shadow-rose-500/30 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
                         >
-                            Gönder <Send size={16} />
+                            {isSubmitting ? (
+                                <>
+                                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                                    Gönderiliyor...
+                                </>
+                            ) : (
+                                <>
+                                    Gönder <Send size={16} />
+                                </>
+                            )}
                         </button>
                     </form>
                  </div>

@@ -1,8 +1,13 @@
-import React from 'react';
-import { BadgeCheck, Lock, ShieldCheck, AlertCircle, FileText, ChevronRight, Award, CheckCircle2, Users } from 'lucide-react';
+import React, { useState } from 'react';
+import { BadgeCheck, Lock, ShieldCheck, AlertCircle, FileText, ChevronRight, Award, CheckCircle2, Users, Maximize2 } from 'lucide-react';
 import OptimizedImage from '../components/OptimizedImage';
+import { Link } from 'react-router-dom';
+import ImageLightbox from '../components/ImageLightbox';
 
 const PearsonVue = () => {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   const certImages = [
     'https://images.unsplash.com/photo-1434030216411-0b793f4b4173',
     'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40',
@@ -15,6 +20,11 @@ const PearsonVue = () => {
     'https://images.unsplash.com/photo-1497366754035-f200968a6e72',
     'https://images.unsplash.com/photo-1524178232363-1fb2b075b655',
   ];
+
+  const openLightbox = (index) => {
+      setCurrentImageIndex(index);
+      setLightboxOpen(true);
+  };
 
   return (
     <div className="pt-24 pb-12 bg-gradient-to-br from-slate-50 via-white to-emerald-50 min-h-screen font-sans relative overflow-hidden">
@@ -43,11 +53,12 @@ const PearsonVue = () => {
                      >
                         Sınav Kuralları <ChevronRight size={14} />
                      </button>
-                     <button 
-                        className="bg-white text-slate-900 border border-slate-200 px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-slate-50 hover:scale-105 active:scale-95 transition-all shadow-lg"
+                     <Link 
+                        to="/iletisim"
+                        className="bg-white text-slate-900 border border-slate-200 px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-slate-50 hover:scale-105 active:scale-95 transition-all shadow-lg inline-flex items-center"
                      >
                         İletişime Geç
-                     </button>
+                     </Link>
                 </div>
             </div>
             
@@ -152,10 +163,16 @@ const PearsonVue = () => {
                 {examRoomImages.map((img, i) => (
                     <div
                         key={i}
-                        className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl cursor-pointer hover:scale-105 hover:rotate-1 transition-all animate-slide-up"
+                        onClick={() => openLightbox(i)}
+                        className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl cursor-pointer hover:scale-105 hover:rotate-1 transition-all animate-slide-up group relative"
                         style={{ animationDelay: `${i * 0.15}s` }}
                     >
                         <OptimizedImage src={img} className="w-full h-full object-cover" alt={`Room ${i + 1}`} />
+                        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <div className="bg-white/20 p-3 rounded-full backdrop-blur-md border border-white/30 text-white">
+                                <Maximize2 size={24} />
+                            </div>
+                        </div>
                     </div>
                 ))}
             </div>
@@ -226,8 +243,24 @@ const PearsonVue = () => {
                 ))}
             </div>
         </div>
-
       </div>
+
+      {/* Lightbox for Exam Rooms */}
+      {lightboxOpen && (
+          <ImageLightbox
+              images={examRoomImages}
+              currentIndex={currentImageIndex}
+              onClose={() => setLightboxOpen(false)}
+              onNext={(step = 1) => {
+                  const newIndex = (currentImageIndex + step + examRoomImages.length) % examRoomImages.length;
+                  setCurrentImageIndex(newIndex);
+              }}
+              onPrev={() => {
+                  const newIndex = (currentImageIndex - 1 + examRoomImages.length) % examRoomImages.length;
+                  setCurrentImageIndex(newIndex);
+              }}
+          />
+      )}
     </div>
   );
 };
