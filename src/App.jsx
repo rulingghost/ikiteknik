@@ -4,6 +4,7 @@ import { MessageCircle } from 'lucide-react';
 import { SITE_DATA } from './constants';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import MobileActionBar from './components/MobileActionBar';
 import ScrollToTop from './components/ScrollToTop';
 
 // Lazy load all pages for faster initial load
@@ -17,7 +18,13 @@ const Calendar = lazy(() => import('./pages/Calendar'));
 const PearsonVue = lazy(() => import('./pages/PearsonVue'));
 const Scanning3D = lazy(() => import('./pages/Scanning3D'));
 const Modeling3D = lazy(() => import('./pages/Modeling3D'));
+const Printing3D = lazy(() => import('./pages/Printing3D'));
+const Gallery3D = lazy(() => import('./pages/Gallery3D'));
+const Store = lazy(() => import('./pages/Store'));
 const GetQuote = lazy(() => import('./pages/GetQuote'));
+
+const EducationHome = lazy(() => import('./pages/EducationHome'));
+const ProductionHome = lazy(() => import('./pages/ProductionHome'));
 
 // Loading component
 const PageLoader = () => (
@@ -38,16 +45,20 @@ const RouteScrollToTop = () => {
   return null;
 };
 
+
+
 function App() {
   return (
     <Router>
       <RouteScrollToTop />
-      <div className="antialiased bg-slate-50 text-slate-900 font-['Inter'] selection:bg-rose-500 selection:text-white">
+      <div className="antialiased bg-slate-50 text-slate-900 font-['Inter'] selection:bg-rose-500 selection:text-white pb-16 md:pb-0">
         <Navbar />
         <main>
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/egitim" element={<EducationHome />} />
+              <Route path="/uretim" element={<ProductionHome />} />
               <Route path="/egitimlerimiz" element={<Courses />} />
               <Route path="/hakkimizda" element={<About />} />
               <Route path="/calismalar" element={<StudentWorks />} />
@@ -57,17 +68,16 @@ function App() {
               <Route path="/pearson" element={<PearsonVue />} />
               <Route path="/3d-tarama" element={<Scanning3D />} />
               <Route path="/3d-modelleme" element={<Modeling3D />} />
+              <Route path="/3d-baski" element={<Printing3D />} />
+              <Route path="/galeri" element={<Gallery3D />} />
+              <Route path="/satis" element={<Store />} />
               <Route path="/teklif-al" element={<GetQuote />} />
               <Route path="*" element={<Home />} />
             </Routes>
           </Suspense>
         </main>
         <Footer />
-        
-        <ScrollToTop />
-
-        {/* Fixed WhatsApp Support Button */}
-
+        <MobileActionBar />
       </div>
     </Router>
   );

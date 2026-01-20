@@ -1,35 +1,50 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #1877F2;
+  --color-primary-dark: #0a4eb0;
+  --color-secondary: #25D366;
+  --color-dark: #0B0F19;
+  --color-surface: #151E32;
+  --color-surface-light: #1E293B;
+  
+  --font-sans: 'Inter', system-ui, sans-serif;
+  
+  --animate-pulse-slow: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-glow: glow 2s ease-in-out infinite alternate;
+}
+
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
 }
 
 body {
   margin: 0;
-  background-color: #f8fafc;
+  background-color: #f8fafc; /* Default to light for Education side */
   color: #0f172a;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   overflow-x: hidden;
 }
 
+/* Scrollbar styling that works for both but defaults to dark-ish track */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: var(--color-dark);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 5px;
-  border: 2px solid #f1f5f9;
+  background: var(--color-surface-light);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: var(--color-primary);
 }
 
 @keyframes pulse-slow {
@@ -37,140 +52,77 @@ body {
   50% { opacity: 0.6; }
 }
 
-.animate-pulse-slow {
-  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
 }
 
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+@keyframes glow {
+  from { box-shadow: 0 0 10px -5px var(--color-primary); }
+  to { box-shadow: 0 0 20px 5px var(--color-primary); }
 }
 
-.animate-spin-slow {
-  animation: spin-slow 8s linear infinite;
-}
-
-/* Custom glass effect - Light Mode */
-.glass {
-  background: rgba(255, 255, 255, 0.7);
+/* Glass & Neon Utilities */
+.glass-panel {
+  background: rgba(21, 30, 50, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-.glass-hover {
+.glass-card {
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+  border: 1px solid rgba(24, 119, 242, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
 }
 
-.glass-hover:hover {
-  background: rgba(255, 255, 255, 0.9);
-  border-color: rgba(225, 29, 72, 0.4);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+.glass-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 20px rgba(24, 119, 242, 0.2);
+  transform: translateY(-5px);
 }
 
-@layer utilities {
-  /* 3D Perspective Utilities */
-  .perspective-1000 {
-    perspective: 1000px;
-  }
-
-  .transform-style-3d {
-    transform-style: preserve-3d;
-  }
-
-  .backface-hidden {
-    backface-visibility: hidden;
-  }
-
-  /* 3D Interactive Classes */
-  .tilt-3d {
-    transition: transform 0.4s cubic-bezier(0.1, 0.7, 0.4, 1), box-shadow 0.4s ease;
-    transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
-    will-change: transform;
-  }
-
-  .tilt-3d:hover {
-    transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) scale(1.02);
-    box-shadow: 20px 20px 60px rgba(0,0,0,0.05), -20px -20px 60px rgba(255,255,255,0.8);
-  }
-
-  .card-3d {
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-  }
-
-  .card-3d:hover {
-    transform: translateY(-8px) rotateX(4deg) rotateY(-2deg);
-  }
-
-  .card-3d-content {
-    transform: translateZ(20px);
-  }
-
-  .btn-3d {
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    transform: translateZ(0);
-  }
-
-  .btn-3d::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -50%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      to right,
-      transparent,
-      rgba(255, 255, 255, 0.3),
-      transparent
-    );
-    transform: skewX(-15deg);
-    transition: 0.5s;
-  }
-
-  .btn-3d:hover::after {
-    left: 150%;
-  }
-
-  .btn-3d:active {
-    transform: scale(0.95) translateY(2px);
-  }
+.neon-text {
+  text-shadow: 0 0 10px rgba(24, 119, 242, 0.5);
 }
 
-/* Performance Utilities */
-.optimize-gpu {
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-  transform: translateZ(0);
+.neon-border {
+  box-shadow: 0 0 10px rgba(24, 119, 242, 0.3), inset 0 0 10px rgba(24, 119, 242, 0.1);
 }
 
-/* Utility classes for animations */
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-in-out;
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(24, 119, 242, 0.4);
 }
 
-.animate-slide-up {
-  animation: slideUp 0.5s ease-out;
+.btn-primary:hover {
+  background: #2563EB;
+  box-shadow: 0 0 25px rgba(24, 119, 242, 0.6);
+  transform: translateY(-2px);
 }
 
-.animate-scale-in {
-  animation: scaleIn 0.3s ease-out;
+/* 3D Specifics */
+.perspective-container {
+  perspective: 1000px;
 }
 
-/* Shimmer placeholder */
-.shimmer {
-  background: linear-gradient(90deg, #f1f5f9 25%, #f8fafc 50%, #f1f5f9 75%);
-  background-size: 200% 100%;
-  animation: shine-bg 1.5s infinite linear;
+.rotate-y-12 {
+  transform: rotateY(12deg);
 }
 
-@keyframes shine-bg {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+.gradient-text {
+  background: linear-gradient(to right, #fff, #94a3b8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

@@ -1,453 +1,275 @@
-import React, { useState, useEffect } from 'react';
-import { Scan, Layers, Camera, AlertCircle, ChevronRight, CheckCircle, ArrowRight, Sparkles, Target, Clock, Shield, Zap, Box } from 'lucide-react';
+import React, { useState } from 'react';
+import { Scan, Layers, Camera, CheckCircle, ArrowRight, Zap, Target, Box, Cpu } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import OptimizedImage from '../components/OptimizedImage';
 import ImageLightbox from '../components/ImageLightbox';
+import References3D from '../components/References3D';
+import Testimonials3D from '../components/Testimonials3D';
+import EducationBridge from '../components/EducationBridge';
 
 const Scanning3D = () => {
-  const [activeService, setActiveService] = useState(0);
+  const [activeTab, setActiveTab] = useState('lazer');
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Collect all images for the lightbox
-  const getAllImages = () => services.map(s => s.image);
-  
-  const openLightbox = (index) => {
-    setCurrentImageIndex(index);
-    setLightboxOpen(true);
-  };
+  // Images from the uploaded assets
+  // Images
+  const galleryImages = [
+    '/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (1).jpeg',
+    '/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (5).jpeg',
+    '/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (8).jpeg',
+    '/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (12).jpeg',
+    '/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (6).jpeg',
+  ];
 
   const services = [
     {
-      id: 'laser',
+      id: 'lazer',
       title: 'Lazer 3D Tarama',
-      subtitle: 'Yüksek hassasiyet gerektiren endüstriyel uygulamalar için idealdir.',
-      description: 'Lazer 3D tarama, nesnenin yüzeyine lazer ışını gönderilerek yansıyan sinyalin ölçülmesi prensibine dayanır. Bu yöntem sayesinde nesnenin geometrisi yüksek hassasiyetle ve milimetrik doğrulukta dijital ortama aktarılır.',
-      icon: <Zap className="w-full h-full" />,
-      color: 'rose',
-      features: [
-        'Çok yüksek ölçüm doğruluğu',
-        'Büyük ve karmaşık parçalar için uygun',
-        'Endüstriyel standartlara uyumlu',
-        'CAD ve ölçüm yazılımlarıyla tam entegrasyon'
-      ],
-      applications: [
-        'Otomotiv',
-        'Havacılık',
-        'Savunma Sanayi',
-        'Kalite Kontrol',
-        'Tersine Mühendislik'
-      ],
-      image: '/images/3d-tarama/WhatsApp Image 2026-01-20 at 16.18.30 (1).jpeg'
+      icon: <Target size={24} />,
+      desc: 'Yüksek hassasiyet gerektiren endüstriyel uygulamalar için idealdir. Nesnenin yüzeyine lazer ışını gönderilerek yansıyan sinyalin ölçülmesi prensibine dayanır.',
+      features: ['Çok yüksek ölçüm doğruluğu', 'Büyük ve karmaşık parçalar', 'Endüstriyel standartlara uyumlu', 'CAD ve ölçüm yazılımları entegrasyonu'],
+      image: galleryImages[0]
     },
     {
-      id: 'structured-light',
-      title: 'Beyaz Işık / Yapılandırılmış Işık Tarama',
-      subtitle: 'Küçük, karmaşık ve detaylı parçaların yüksek çözünürlükte taranmasını sağlar.',
-      description: 'Bu yöntemde nesne üzerine belirli desenlerde beyaz veya mavi ışık projekte edilir. Işığın yüzeydeki bozulmaları algılanarak nesnenin çok yüksek çözünürlüklü 3D modeli oluşturulur.',
-      icon: <Layers className="w-full h-full" />,
-      color: 'blue',
-      features: [
-        'Çok ince detayları yakalayabilme',
-        'Küçük ve orta ölçekli parçalar için ideal',
-        'Temassız ve güvenli tarama',
-        'Pürüzsüz yüzeylerde yüksek performans'
-      ],
-      applications: [
-        'Medikal Parçalar',
-        'Takı',
-        'Kalıpçılık',
-        'Hassas Mekanik Bileşenler'
-      ],
-      image: '/images/3d-tarama/WhatsApp Image 2026-01-20 at 16.18.30 (5).jpeg'
+      id: 'beyaz-isik',
+      title: 'Beyaz Işık / Yapılandırılmış Işık',
+      icon: <Zap size={24} />,
+      desc: 'Küçük, karmaşık ve detaylı parçaların yüksek çözünürlükte taranmasını sağlar. Nesne üzerine belirli desenlerde ışık projekte edilir.',
+      features: ['Çok ince detayları yakalayabilme', 'Küçük ve orta ölçekli parçalar', 'Temassız ve güvenli tarama', 'Pürüzsüz yüzeylerde yüksek performans'],
+      image: galleryImages[1]
     },
     {
-      id: 'handheld',
+      id: 'eltipi',
       title: 'El Tipi 3D Tarama',
-      subtitle: 'Taşınabilir yapısı sayesinde sahada hızlı ve esnek tarama imkânı sunar.',
-      description: 'El tipi 3D tarayıcılar, taşınabilir yapıları sayesinde nesnenin bulunduğu ortamda tarama yapılmasına olanak tanır. Operatör, tarayıcıyı nesne etrafında hareket ettirerek hızlı şekilde veri toplar.',
-      icon: <Scan className="w-full h-full" />,
-      color: 'purple',
-      features: [
-        'Sahada ve yerinde tarama imkânı',
-        'Hızlı veri toplama',
-        'Büyük veya sabit nesneler için ideal',
-        'Kurulum gerektirmez'
-      ],
-      applications: [
-        'Şantiye Ortamları',
-        'Büyük Makineler',
-        'Araçlar',
-        'Arkeolojik Eserler'
-      ],
-      image: '/images/3d-tarama/WhatsApp Image 2026-01-20 at 16.18.30 (8).jpeg'
+      icon: <Scan size={24} />,
+      desc: 'Taşınabilir yapısı sayesinde sahada hızlı ve esnek tarama imkânı sunar. Operatör, tarayıcıyı nesne etrafında hareket ettirerek veri toplar.',
+      features: ['Sahada ve yerinde tarama', 'Hızlı veri toplama', 'Büyük veya sabit nesneler', 'Kurulum gerektirmez'],
+      image: galleryImages[2]
     },
     {
-      id: 'photogrammetry',
+      id: 'fotogrametri',
       title: 'Fotogrametri',
-      subtitle: 'Çoklu fotoğraflar kullanılarak nesnelerin 3D dijital modellerinin oluşturulmasını sağlar.',
-      description: 'Fotogrametri, nesnenin farklı açılardan çekilmiş çok sayıda fotoğrafının yazılım ortamında birleştirilmesiyle 3D model oluşturulması yöntemidir. Özellikle büyük ölçekli ve ulaşılması zor nesneler için ekonomik bir çözümdür.',
-      icon: <Camera className="w-full h-full" />,
-      color: 'green',
-      features: [
-        'Kamera ve yazılım tabanlı çözüm',
-        'Geniş alanlar için uygun',
-        'Doku (renk) bilgisi üretir',
-        'Maliyet avantajı sağlar'
-      ],
-      applications: [
-        'Kültürel Miras',
-        'Mimari Yapılar',
-        'Heykeller',
-        'Açık Alan Objeleri'
-      ],
-      image: '/images/3d-tarama/WhatsApp Image 2026-01-20 at 16.18.30 (12).jpeg'
+      icon: <Camera size={24} />,
+      desc: 'Çoklu fotoğraflar kullanılarak nesnelerin 3D dijital modellerinin oluşturulmasını sağlar. Büyük ölçekli nesneler için ekonomiktir.',
+      features: ['Kamera ve yazılım tabanlı', 'Geniş alanlar için uygun', 'Doku (renk) bilgisi üretir', 'Maliyet avantajı'],
+      image: galleryImages[3]
     }
   ];
 
-  const benefits = [
-    {
-      icon: <Target size={32} />,
-      title: 'Yüksek Hassasiyet',
-      description: 'Milimetrik doğrulukta ölçüm ve modelleme'
-    },
-    {
-      icon: <Clock size={32} />,
-      title: 'Zaman Tasarrufu',
-      description: 'Geleneksel yöntemlere göre %70 daha hızlı'
-    },
-    {
-      icon: <Shield size={32} />,
-      title: 'Temassız Tarama',
-      description: 'Hassas ve kırılgan parçalar için güvenli'
-    },
-    {
-      icon: <Box size={32} />,
-      title: 'Karmaşık Geometriler',
-      description: 'En karmaşık formları bile yakalayabilme'
-    }
-  ];
-
-  const colorClasses = {
-    rose: {
-      bg: 'bg-rose-600',
-      text: 'text-rose-600',
-      border: 'border-rose-600',
-      gradient: 'from-rose-500 to-pink-600',
-      shadow: 'shadow-rose-500/30'
-    },
-    blue: {
-      bg: 'bg-blue-600',
-      text: 'text-blue-600',
-      border: 'border-blue-600',
-      gradient: 'from-blue-500 to-cyan-600',
-      shadow: 'shadow-blue-500/30'
-    },
-    purple: {
-      bg: 'bg-purple-600',
-      text: 'text-purple-600',
-      border: 'border-purple-600',
-      gradient: 'from-purple-500 to-indigo-600',
-      shadow: 'shadow-purple-500/30'
-    },
-    green: {
-      bg: 'bg-green-600',
-      text: 'text-green-600',
-      border: 'border-green-600',
-      gradient: 'from-green-500 to-emerald-600',
-      shadow: 'shadow-green-500/30'
-    }
-  };
+  const activeContent = services.find(s => s.id === activeTab);
 
   return (
-    <div className="bg-slate-50 min-h-screen">
+    <div className="bg-[#0B0F19] min-h-screen text-white selection:bg-[#1877F2] selection:text-white font-sans overflow-x-hidden">
       <SEO 
-        title="3D Tarama Hizmetleri" 
-        description="Profesyonel 3D tarama hizmetleri: Lazer tarama, yapılandırılmış ışık, tersine mühendislik ve kalite kontrol için yüksek hassasiyetli dijitalleştirme çözümleri."
-        keywords="3d tarama, lazer tarama, tersine muhendislik, kalite kontrol, 3d scanning, dijitallestirme"
+        title="3D Tarama Hizmetleri | İki Teknik" 
+        description="Endüstriyel hassasiyette 3D tarama, lazer tarama, tersine mühendislik ve kalite kontrol çözümleri."
       />
-      {/* Hero Section */}
-      <section className="pt-32 pb-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-rose-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-full blur-3xl animate-pulse-slow stagger-1" />
-        
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-xl rounded-full border border-white/20 mb-8 animate-fade-in">
-              <Sparkles size={16} className="text-rose-400" />
-              <span className="text-white text-xs font-bold tracking-widest uppercase">Profesyonel 3D Tarama Hizmetleri</span>
+
+      {/* HERO SECTION */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        {/* Background Image / Overlay */}
+        <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F19] via-[#0B0F19]/80 to-transparent z-10" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#1877F2]/20 via-[#0B0F19]/50 to-[#0B0F19] z-10 opacity-50" />
+            <img 
+              src={galleryImages[2]} 
+              alt="3D Scanning Hero" 
+              className="w-full h-full object-cover opacity-40 scale-105 animate-pulse-slow"
+            />
+        </div>
+
+        <div className="container mx-auto px-6 relative z-20 text-center">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#1877F2]/30 bg-[#1877F2]/10 backdrop-blur-md mb-8 animate-fade-in shadow-[0_0_15px_rgba(24,119,242,0.3)]">
+                <Scan size={16} className="text-[#1877F2]" />
+                <span className="text-[#1877F2] text-xs font-bold tracking-[0.2em] uppercase">Advanced Scanning Tech</span>
             </div>
-            
-            <h1 className="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter uppercase italic leading-none animate-slide-up">
-              3D Tarama <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-400">Teknolojisi</span>
+
+            <h1 className="text-5xl md:text-8xl font-black text-white mb-6 uppercase tracking-tighter leading-none animate-slide-up neon-text">
+                Gerçeği <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1877F2] to-cyan-400">Dijitale Dönüştürüyoruz</span>
             </h1>
-            
-            <p className="text-slate-300 text-lg md:text-xl font-medium leading-relaxed mb-12 max-w-3xl mx-auto animate-slide-up stagger-1">
-              Fiziksel nesneleri yüksek hassasiyetli sensörler ve kameralar kullanarak dijital ortama aktarıyoruz. 
-              Tersine mühendislik, kalite kontrol, restorasyon ve prototip geliştirme için profesyonel çözümler.
+
+            <p className="text-slate-400 text-lg md:text-xl font-medium max-w-2xl mx-auto mb-10 leading-relaxed animate-slide-up" style={{animationDelay: '0.2s'}}>
+                Detayı yakala, geleceği tasarla. Yüksek hassasiyetli sensörler ile fiziksel nesnelerinizi dijital dünyaya aktarıyoruz.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center animate-slide-up stagger-2">
-              <a 
-                href="#services"
-                className="btn-3d bg-gradient-to-r from-rose-600 to-pink-600 text-white px-12 py-5 rounded-3xl text-lg font-black uppercase tracking-widest shadow-2xl shadow-rose-500/30 inline-flex items-center gap-3 justify-center"
-              >
-                Hizmetleri Keşfet
-                <ArrowRight size={20} />
-              </a>
-              <Link 
-                to="/teklif-al"
-                className="btn-3d bg-white/10 backdrop-blur-xl text-white border-2 border-white/20 px-12 py-5 rounded-3xl text-lg font-black uppercase tracking-widest shadow-2xl inline-flex items-center gap-3 justify-center"
-              >
-                Teklif Al
-              </Link>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center animate-slide-up" style={{animationDelay: '0.4s'}}>
+                <a href="#hizmetler" className="btn-primary group border border-[#1877F2] hover:bg-[#1877F2] hover:text-white bg-transparent">
+                  <span className="relative z-10 flex items-center gap-2">
+                    Hizmetleri İncele <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </a>
+                <Link to="/teklif-al" className="btn-primary flex items-center gap-2 justify-center">
+                   Teklif Al
+                </Link>
             </div>
-          </div>
+        </div>
+
+         {/* Scroll Indicator */}
+         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+            <div className="w-6 h-10 rounded-full border-2 border-slate-600 flex justify-center p-1">
+                <div className="w-1 h-2 bg-[#1877F2] rounded-full animate-scroll" />
+            </div>
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-24 relative">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tighter uppercase italic">
-              Neden 3D Tarama?
-            </h2>
-            <p className="text-slate-500 text-lg font-medium max-w-2xl mx-auto">
-              Modern üretim ve tasarım süreçlerinde vazgeçilmez bir teknoloji
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {benefits.map((benefit, index) => (
-              <div 
-                key={index}
-                className="tilt-3d bg-white rounded-[2rem] p-8 border border-slate-100 shadow-xl hover:shadow-2xl transition-all group animate-slide-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="w-16 h-16 bg-gradient-to-br from-rose-500 to-purple-600 rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform shadow-lg shadow-rose-500/20">
-                  {benefit.icon}
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-tight">
-                  {benefit.title}
-                </h3>
-                <p className="text-slate-500 text-sm font-medium leading-relaxed">
-                  {benefit.description}
-                </p>
-              </div>
+      {/* TECH SPECS TICKER */}
+      <div className="bg-[#151E32] border-y border-white/5 py-4 overflow-hidden relative">
+        <div className="flex gap-16 animate-infinite-scroll whitespace-nowrap text-slate-400 font-bold uppercase tracking-widest text-xs opacity-60">
+            {Array(10).fill("• Yüksek Hassasiyet • Tersine Mühendislik • Kalite Kontrol • Dijital Arşivleme").map((txt, i) => (
+                <span key={i}>{txt}</span>
             ))}
-          </div>
         </div>
-      </section>
+      </div>
 
-      {/* Services Section */}
-      <section id="services" className="py-24 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tighter uppercase italic">
-              Hizmet Türlerimiz
-            </h2>
-            <p className="text-slate-500 text-lg font-medium max-w-2xl mx-auto">
-              İhtiyacınıza özel profesyonel 3D tarama çözümleri
-            </p>
-          </div>
-
-          {/* Service Tabs */}
-          <div className="flex flex-wrap justify-center gap-4 mb-16">
-            {services.map((service, index) => {
-              const colors = colorClasses[service.color];
-              return (
-                <button
-                  key={service.id}
-                  onClick={() => setActiveService(index)}
-                  className={`px-8 py-4 rounded-2xl font-bold text-sm uppercase tracking-wider transition-all shadow-lg ${
-                    activeService === index
-                      ? `${colors.bg} text-white ${colors.shadow} scale-105`
-                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                  }`}
-                >
-                  {service.title}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Active Service Detail */}
-          <div className="max-w-6xl mx-auto">
-            {services.map((service, index) => {
-              const colors = colorClasses[service.color];
-              return (
-                <div
-                  key={service.id}
-                  className={`transition-all duration-500 ${
-                    activeService === index ? 'opacity-100 block' : 'opacity-0 hidden'
-                  }`}
-                >
-                  <div className="grid lg:grid-cols-2 gap-12 items-center">
-                    {/* Image */}
-                    <div className="order-2 lg:order-1 animate-slide-up">
-                      <div className="relative rounded-[3rem] overflow-hidden shadow-2xl group">
-                        <OptimizedImage 
-                          src={service.image}
-                          width={600}
-                          className="w-full aspect-[4/3] object-cover group-hover:scale-110 transition-transform duration-700"
-                          alt={service.title}
-                        />
-                        <div className={`absolute inset-0 bg-gradient-to-br ${colors.gradient} opacity-20`} />
-                        <div className={`absolute top-8 left-8 w-20 h-20 ${colors.bg} rounded-2xl flex items-center justify-center text-white shadow-2xl ${colors.shadow}`}>
-                          {service.icon}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="order-1 lg:order-2 animate-slide-up stagger-1">
-                      <div className={`inline-block px-4 py-2 ${colors.bg} text-white rounded-full text-xs font-bold uppercase tracking-wider mb-6`}>
-                        {service.id}
-                      </div>
-                      
-                      <h3 className="text-3xl md:text-4xl font-black text-slate-900 mb-4 tracking-tight uppercase">
-                        {service.title}
-                      </h3>
-                      
-                      <p className={`${colors.text} text-lg font-bold mb-6`}>
-                        {service.subtitle}
+       {/* INTRO SECTION - Split Layout */}
+       <section className="py-24 bg-[#0B0F19]">
+          <div className="container mx-auto px-6">
+              <div className="grid lg:grid-cols-2 gap-16 items-center">
+                  <div className="order-2 lg:order-1">
+                      <div className="w-20 h-1 bg-[#1877F2] mb-8 rounded-full shadow-[0_0_15px_#1877F2]" />
+                      <h2 className="text-4xl md:text-5xl font-black text-white mb-8 uppercase tracking-wide leading-tight">
+                          3D Tarama Hizmeti <br/>
+                          <span className="text-slate-500">Nedir?</span>
+                      </h2>
+                      <p className="text-slate-400 leading-relaxed text-lg mb-6">
+                         3D tarama hizmeti, fiziksel bir nesnenin yüksek hassasiyetli sensörler ve kameralar kullanılarak dijital ortama aktarılmasını sağlar. Bu süreçte nesnenin ölçüleri, yüzey detayları ve geometrisi birebir yakalanarak üç boyutlu bir dijital model oluşturulur.
                       </p>
-                      
-                      <p className="text-slate-600 text-base leading-relaxed mb-8 font-medium">
-                        {service.description}
+                      <p className="text-slate-400 leading-relaxed text-lg mb-8">
+                         3D tarama; tersine mühendislik, kalite kontrol, restorasyon, prototip geliştirme ve kişiye özel üretim gibi birçok alanda etkin bir çözümdür. Karmaşık formların hızlı ve hatasız şekilde dijitalleştirilmesine olanak tanır, zaman ve maliyet avantajı sağlar.
                       </p>
-
-                      {/* Features */}
-                      <div className="mb-8">
-                        <h4 className="text-sm font-black text-slate-900 uppercase tracking-wider mb-4">
-                          Öne Çıkan Özellikler:
-                        </h4>
-                        <div className="space-y-3">
-                          {service.features.map((feature, idx) => (
-                            <div key={idx} className="flex items-start gap-3">
-                              <CheckCircle size={20} className={`${colors.text} mt-0.5 flex-shrink-0`} />
-                              <span className="text-slate-700 font-medium">{feature}</span>
-                            </div>
-                          ))}
-                        </div>
+                      <div className="flex gap-4">
+                          <div className="flex items-center gap-2 text-white font-bold">
+                              <CheckCircle className="text-[#1877F2]" /> Hızlı Dijitalleştirme
+                          </div>
+                          <div className="flex items-center gap-2 text-white font-bold">
+                              <CheckCircle className="text-[#1877F2]" /> Mikron Hassasiyet
+                          </div>
                       </div>
-
-                      {/* Applications */}
-                      <div>
-                        <h4 className="text-sm font-black text-slate-900 uppercase tracking-wider mb-4">
-                          Kullanım Alanları:
-                        </h4>
-                        <div className="flex flex-wrap gap-2">
-                          {service.applications.map((app, idx) => (
-                            <span 
-                              key={idx}
-                              className={`px-4 py-2 bg-slate-100 ${colors.text} rounded-xl text-xs font-bold uppercase tracking-wider`}
-                            >
-                              {app}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section className="py-24 bg-slate-50">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tighter uppercase italic">
-              Çalışma Sürecimiz
-            </h2>
-            <p className="text-slate-500 text-lg font-medium max-w-2xl mx-auto">
-              Profesyonel ve hızlı hizmet garantisi
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {[
-              { step: '01', title: 'Danışma', desc: 'İhtiyaçlarınızı analiz ediyoruz' },
-              { step: '02', title: 'Tarama', desc: 'Profesyonel ekipmanla veri toplama' },
-              { step: '03', title: 'İşleme', desc: 'Verileri optimize edip modelleme' },
-              { step: '04', title: 'Teslimat', desc: 'İstenilen formatta dosya teslimi' }
-            ].map((item, index) => (
-              <div 
-                key={index}
-                className="relative animate-slide-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="tilt-3d bg-white rounded-[2rem] p-8 border border-slate-100 shadow-xl hover:shadow-2xl transition-all">
-                  <div className="text-6xl font-black text-slate-100 mb-4">{item.step}</div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-tight">
-                    {item.title}
-                  </h3>
-                  <p className="text-slate-500 text-sm font-medium leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-                {index < 3 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-rose-300 to-transparent" />
-                )}
+                  <div className="order-1 lg:order-2 relative group">
+                      <div className="absolute inset-0 bg-[#1877F2]/20 blur-[100px] rounded-full" />
+                      <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl skew-y-3 group-hover:skew-y-0 transition-all duration-700">
+                          <OptimizedImage 
+                             src={galleryImages[0]} 
+                             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                          />
+                      </div>
+                  </div>
               </div>
-            ))}
           </div>
-        </div>
-      </section>
+       </section>
 
-      {/* CTA Section */}
-      <section id="contact" className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-rose-500/20 to-purple-500/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-full blur-3xl" />
-        
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-8 tracking-tighter uppercase italic leading-tight">
-              Projeniz İçin <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-400">Profesyonel Çözüm</span>
-            </h2>
-            <p className="text-slate-300 text-lg md:text-xl font-medium leading-relaxed mb-12">
-              3D tarama hizmetlerimiz hakkında detaylı bilgi almak ve projeniz için teklif almak isterseniz bizimle iletişime geçin.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link 
-                to="/iletisim"
-                className="btn-3d bg-gradient-to-r from-rose-600 to-pink-600 text-white px-12 py-5 rounded-3xl text-lg font-black uppercase tracking-widest shadow-2xl shadow-rose-500/30 inline-flex items-center gap-3 justify-center"
-              >
-                İletişime Geç
-                <ArrowRight size={20} />
-              </Link>
-              <a 
-                href="tel:+903122313135"
-                className="btn-3d bg-white/10 backdrop-blur-xl text-white border-2 border-white/20 px-12 py-5 rounded-3xl text-lg font-black uppercase tracking-widest shadow-2xl inline-flex items-center gap-3 justify-center"
-              >
-                Hemen Ara
-              </a>
-            </div>
+       {/* DETAILED SERVICES GRID */}
+       <section id="hizmetler" className="py-24 bg-[#0F1420] relative">
+          <div className="container mx-auto px-6">
+              <div className="text-center mb-20">
+                  <span className="text-[#1877F2] font-bold tracking-[0.2em] uppercase text-sm mb-4 block">Teknolojiler</span>
+                  <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight">Hizmet Türleri</h2>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                  {services.map((service) => (
+                      <div key={service.id} className="bg-[#151E32] rounded-3xl p-8 border border-white/5 hover:border-[#1877F2]/50 transition-all duration-300 group hover:-translate-y-2">
+                          <div className="flex items-start justify-between mb-8">
+                              <div className="p-4 bg-[#1877F2]/10 text-[#1877F2] rounded-2xl group-hover:bg-[#1877F2] group-hover:text-white transition-colors">
+                                  {service.icon}
+                              </div>
+                              <div className="flex flex-col items-end">
+                                  <span className="text-4xl font-black text-white/5 group-hover:text-white/10 transition-colors">0{services.indexOf(service)+1}</span>
+                              </div>
+                          </div>
+                          
+                          <h3 className="text-2xl font-bold text-white mb-4 uppercase tracking-wide">{service.title}</h3>
+                          <p className="text-slate-400 mb-8 leading-relaxed border-b border-white/5 pb-8 min-h-[5rem]">
+                              {service.desc}
+                          </p>
+                          
+                          <div className="space-y-4">
+                              <h4 className="text-sm font-bold text-white uppercase tracking-wider">Öne Çıkan Özellikler</h4>
+                              <div className="grid grid-cols-2 gap-3">
+                                  {service.features.map((feature, i) => (
+                                      <div key={i} className="flex items-center gap-2">
+                                          <div className="w-1.5 h-1.5 bg-[#1877F2] rounded-full" />
+                                          <span className="text-xs text-slate-400 group-hover:text-slate-300 transition-colors">{feature}</span>
+                                      </div>
+                                  ))}
+                              </div>
+                          </div>
+                      </div>
+                  ))}
+              </div>
           </div>
-        </div>
+       </section>
+
+       {/* GALLERY GRID */}
+       <section className="py-24 bg-[#0F1420]">
+         <div className="container mx-auto px-6">
+              <div className="flex justify-between items-end mb-12">
+                 <div>
+                     <h3 className="text-2xl font-bold text-white uppercase tracking-wider mb-2">Proje Galerisi</h3>
+                     <p className="text-slate-500">Son tamamlanan tarama projelerimizden örnekler</p>
+                 </div>
+                 <Link to="/galeri" className="text-[#1877F2] font-bold uppercase tracking-widest text-xs hover:underline">
+                     Tüm Galeriyi Gör
+                 </Link>
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                 {galleryImages.map((img, idx) => (
+                     <div 
+                         key={idx} 
+                         onClick={() => { setCurrentImageIndex(idx); setLightboxOpen(true); }}
+                         className="group relative aspect-square rounded-xl overflow-hidden cursor-pointer border border-white/5"
+                     >
+                         <OptimizedImage src={img} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                         <div className="absolute inset-0 bg-[#1877F2]/0 group-hover:bg-[#1877F2]/40 transition-colors duration-300 flex items-center justify-center">
+                             <Scan className="text-white opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300" size={32} />
+                         </div>
+                     </div>
+                 ))}
+              </div>
+         </div>
+       </section>
+
+       <EducationBridge 
+          title="Tersine Mühendislik Eğitimi"
+          desc="Geomagic Design X ve 3D Tarama teknolojilerini uzmanlarından öğrenin. Uygulamalı eğitimlerle kalite kontrol ve dijitalleştirme süreçlerine hakim olun."
+          linkText="Detaylı Bilgi"
+          linkTo="/egitimlerimiz"
+       />
+
+       <References3D />
+       <Testimonials3D />
+
+       {/* CTA FOOTER */}
+      <section className="py-24 relative overflow-hidden">
+         <div className="absolute inset-0 bg-[#0B0F19]"></div>
+         <div className="absolute -right-20 -bottom-20 w-96 h-96 bg-[#1877F2]/20 rounded-full blur-[100px]" />
+         <div className="container mx-auto px-6 relative z-10 text-center">
+             <h2 className="text-4xl md:text-5xl font-black text-white mb-8">PROJENİZİ BAŞLATIN</h2>
+             <p className="text-slate-400 mb-10 max-w-xl mx-auto">
+                Hassas parçalarınız, tersine mühendislik ihtiyaçlarınız veya kalite kontrol süreçleriniz için profesyonel destek alın.
+             </p>
+             <Link 
+                to="/teklif-al"
+                className="inline-block py-4 px-12 rounded-full bg-[#1877F2] text-white font-bold uppercase tracking-widest shadow-[0_0_20px_#1877F2] hover:bg-white hover:text-[#0B0F19] transition-all hover:scale-105"
+             >
+                Teklif Oluştur
+             </Link>
+         </div>
       </section>
 
       {/* Lightbox */}
       {lightboxOpen && (
         <ImageLightbox
-          images={getAllImages()}
+          images={galleryImages}
           currentIndex={currentImageIndex}
           onClose={() => setLightboxOpen(false)}
-          onNext={(step = 1) => {
-            const newIndex = (currentImageIndex + step + getAllImages().length) % getAllImages().length;
-            setCurrentImageIndex(newIndex);
-          }}
-          onPrev={() => {
-             const newIndex = (currentImageIndex - 1 + getAllImages().length) % getAllImages().length;
-             setCurrentImageIndex(newIndex);
-          }}
+          onNext={() => setCurrentImageIndex((p) => (p + 1) % galleryImages.length)}
+          onPrev={() => setCurrentImageIndex((p) => (p - 1 + galleryImages.length) % galleryImages.length)}
         />
       )}
     </div>

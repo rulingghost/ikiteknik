@@ -680,11 +680,37 @@ const GetQuote = () => {
     e.preventDefault();
     if (!validateStep(3)) return;
     setIsSubmitting(true);
+
+    // Construct Mailto Body
+    const subject = `Yeni 3D Teklif Talebi: ${contact.name}`;
+    const body = `
+      Müşteri Bilgileri:
+      Ad Soyad: ${contact.name}
+      Firma: ${contact.company}
+      Email: ${contact.email}
+      Telefon: ${contact.phone}
+
+      Proje Detayları:
+      Teknoloji: ${technologies.find(t=>t.id===globalConfig.technology)?.title}
+      Malzeme: ${globalConfig.material}
+      Adet: ${globalConfig.quantity}
+      Yüzey Bitişi: ${finishes.find(f=>f.id===globalConfig.finish)?.name}
+      Tolerans: ${tolerances.find(t=>t.id===globalConfig.tolerance)?.name}
+      Notlar: ${globalConfig.notes}
+
+      Dosyalar:
+      ${files.map(f => `- ${f.name} (${f.size})`).join('\n')}
+
+      Tahmini Tutar: ${estimatedPrice ? `₺${estimatedPrice}` : 'Hesaplanamadı'}
+    `;
+
+    // Simulate Network Request then Open Mail
     setTimeout(() => {
+      window.location.href = `mailto:info@3d3printer.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       setIsSubmitting(false);
       setIsSuccess(true);
       window.scrollTo(0, 0);
-    }, 2000);
+    }, 1500);
   };
 
   return (
