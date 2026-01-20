@@ -126,7 +126,12 @@ const Navbar = () => {
               ))}
             </div>
             
-
+            <Link 
+              to="/teklif-al"
+              className="ml-4 bg-slate-900 hover:bg-rose-600 text-white px-6 py-3 rounded-full text-[11px] font-bold tracking-widest uppercase shadow-lg shadow-slate-900/20 hover:shadow-rose-600/30 active:scale-95 transition-all duration-300 flex items-center gap-2"
+            >
+              Hızlı Teklif <ChevronRight size={14} />
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
