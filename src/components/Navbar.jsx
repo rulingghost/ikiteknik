@@ -54,10 +54,13 @@ const Navbar = () => {
               <MapPin size={12} />
               <span>{SITE_DATA?.address || 'İZMİR-2 CD. NO:43/16 KIZILAY / ANKARA'}</span>
             </div>
-            <div className="flex items-center gap-2 hover:text-[#1877F2] transition-colors cursor-pointer">
+            <a 
+              href={`tel:${(SITE_DATA?.phone || '(0312) 231 31 35').replace(/[\s()]/g, '')}`}
+              className="flex items-center gap-2 hover:text-[#1877F2] transition-colors cursor-pointer"
+            >
               <Phone size={12} />
               <span>{SITE_DATA?.phone || '(0312) 231 31 35'}</span>
-            </div>
+            </a>
           </div>
           <div className="flex items-center gap-4">
              {/* Socials logic remains same */}
@@ -96,12 +99,12 @@ const Navbar = () => {
                  </div>
              ) : (
                 <>
-                    <div className="flex items-baseline gap-0.5">
+                    <div className="flex items-baseline">
                         <span className={`text-2xl font-black tracking-tighter uppercase leading-none transition-colors duration-300 ${scrolled ? 'text-slate-900' : 'text-slate-900'}`}>
-                            iki
+                            İKİ
                         </span>
                         <span className="text-2xl font-black tracking-tighter uppercase leading-none text-rose-600">
-                            teknik
+                            TEKNİK
                         </span>
                     </div>
                     <span className="text-[9px] font-bold tracking-[0.4em] text-slate-400 uppercase leading-none ml-0.5 group-hover:text-rose-500 transition-colors">

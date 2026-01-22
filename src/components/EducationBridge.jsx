@@ -14,7 +14,7 @@ const EducationBridge = ({ title, desc, linkText, linkTo }) => {
                             <GraduationCap size={32} className="text-rose-400" />
                         </div>
                         <div>
-                            <span className="text-rose-400 font-bold uppercase tracking-widest text-xs mb-2 block">İki Teknik Eğitim</span>
+                            <span className="text-rose-400 font-bold uppercase tracking-widest text-xs mb-2 block">İkiteknik Eğitim</span>
                             <h3 className="text-2xl md:text-3xl font-black text-white mb-2">{title}</h3>
                             <p className="text-slate-300 max-w-xl leading-relaxed">
                                 {desc}

@@ -1,0 +1,48 @@
+﻿commit 5073c1073321031e6913561d7a36a765006228b4
+Author: rulingghost <gebcay@gmail.com>
+Date:   Wed Jan 21 02:24:52 2026 +0300
+
+    Refactor: Split site into Education and Production hubs, add Gateway page, fix Navbar logic, and enhance 3D pages
+
+ create mode 100644 public/assets/images/3D3P.png
+ create mode 100644 "public/assets/images/kullanilan_gorseller/3D Bask\304\261ya Uygun Modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (22).jpeg"
+ create mode 100644 "public/assets/images/kullanilan_gorseller/3D Bask\304\261ya Uygun Modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (23).jpeg"
+ create mode 100644 "public/assets/images/kullanilan_gorseller/3D Bask\304\261ya Uygun Modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (24).jpeg"
+ create mode 100644 "public/assets/images/kullanilan_gorseller/3D Bask\304\261ya Uygun Modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (25).jpeg"
+ create mode 100644 "public/assets/images/kullanilan_gorseller/3D Bask\304\261ya Uygun Modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (26).jpeg"
+ create mode 100644 "public/assets/images/kullanilan_gorseller/3D Bask\304\261ya Uygun Modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (27).jpeg"
+ create mode 100644 "public/assets/images/kullanilan_gorseller/3D Bask\304\261ya Uygun Modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (28).jpeg"
+ create mode 100644 public/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (1).jpeg
+ create mode 100644 public/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (10).jpeg
+ create mode 100644 public/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (11).jpeg
+ create mode 100644 public/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (12).jpeg
+ create mode 100644 public/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (13).jpeg
+ create mode 100644 public/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (2).jpeg
+ create mode 100644 public/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (3).jpeg
+ create mode 100644 public/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (4).jpeg
+ create mode 100644 public/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (5).jpeg
+ create mode 100644 public/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (6).jpeg
+ create mode 100644 public/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (7).jpeg
+ create mode 100644 public/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (8).jpeg
+ create mode 100644 public/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (9).jpeg
+ create mode 100644 "public/assets/images/kullanilan_gorseller/End\303\274striyel ve Teknik 3D Modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (19).jpeg"
+ create mode 100644 "public/assets/images/kullanilan_gorseller/End\303\274striyel ve Teknik 3D Modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (20).jpeg"
+ create mode 100644 "public/assets/images/kullanilan_gorseller/End\303\274striyel ve Teknik 3D Modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (21).jpeg"
+ create mode 100644 "public/assets/images/kullanilan_gorseller/Tersine M\303\274hendislik (Reverse Engineering)/WhatsApp Image 2026-01-20 at 16.18.30 (29).jpeg"
+ create mode 100644 "public/assets/images/kullanilan_gorseller/Tersine M\303\274hendislik (Reverse Engineering)/WhatsApp Image 2026-01-20 at 16.18.30 (30).jpeg"
+ create mode 100644 "public/assets/images/kullanilan_gorseller/Tersine M\303\274hendislik (Reverse Engineering)/WhatsApp Image 2026-01-20 at 16.18.30 (31).jpeg"
+ create mode 100644 "public/assets/images/kullanilan_gorseller/Tersine M\303\274hendislik (Reverse Engineering)/WhatsApp Image 2026-01-20 at 16.18.30.jpeg"
+ create mode 100644 "public/assets/images/kullanilan_gorseller/\303\274r\303\274n 3d modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (14).jpeg"
+ create mode 100644 "public/assets/images/kullanilan_gorseller/\303\274r\303\274n 3d modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (15).jpeg"
+ create mode 100644 "public/assets/images/kullanilan_gorseller/\303\274r\303\274n 3d modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (16).jpeg"
+ create mode 100644 "public/assets/images/kullanilan_gorseller/\303\274r\303\274n 3d modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (17).jpeg"
+ create mode 100644 "public/assets/images/kullanilan_gorseller/\303\274r\303\274n 3d modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (18).jpeg"
+ create mode 100644 src/components/EducationBridge.jsx
+ create mode 100644 src/components/MobileActionBar.jsx
+ create mode 100644 src/components/References3D.jsx
+ create mode 100644 src/components/Testimonials3D.jsx
+ create mode 100644 src/pages/EducationHome.jsx
+ create mode 100644 src/pages/Gallery3D.jsx
+ create mode 100644 src/pages/Printing3D.jsx
+ create mode 100644 src/pages/ProductionHome.jsx
+ create mode 100644 src/pages/Store.jsx

@@ -2,56 +2,47 @@ import React, { useState, memo } from 'react';
 import { Camera, Box, Layers, Monitor, ChevronRight } from 'lucide-react';
 import OptimizedImage from '../components/OptimizedImage';
 import SEO from '../components/SEO';
+import { useData } from '../context/DataContext';
 
 const categories = [
     { id: 'all', label: 'Tümü', icon: Layers },
     { id: 'scan', label: '3D Tarama', icon: Camera, folder: '3d tarama' },
     { id: 'print', label: '3D Baskı', icon: Box, folder: '3D Baskıya Uygun Modelleme' },
+    { id: 'printer', label: '3D3P Cihazlar', icon: Monitor, folder: '3D3P' },
     { id: 'reverse', label: 'Tersine Müh.', icon: Monitor, folder: 'Tersine Mühendislik (Reverse Engineering)' },
     { id: 'industrial', label: 'Endüstriyel', icon: Box, folder: 'Endüstriyel ve Teknik 3D Modelleme' },
     { id: 'product', label: 'Ürün Modelleme', icon: Box, folder: 'ürün 3d modelleme' },
 ];
 
-// Sample images mapping (Simulated based on file existence)
-const images = [
-    // 3D Scanning
-    { cat: 'scan', src: '/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (1).jpeg' },
-    { cat: 'scan', src: '/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (2).jpeg' },
-    { cat: 'scan', src: '/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (3).jpeg' },
-    { cat: 'scan', src: '/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (4).jpeg' },
-    { cat: 'scan', src: '/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (5).jpeg' },
-    { cat: 'scan', src: '/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (6).jpeg' },
-    
-    // 3D Print
-    { cat: 'print', src: '/assets/images/kullanilan_gorseller/3D Baskıya Uygun Modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (22).jpeg' },
-    { cat: 'print', src: '/assets/images/kullanilan_gorseller/3D Baskıya Uygun Modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (23).jpeg' },
-    { cat: 'print', src: '/assets/images/kullanilan_gorseller/3D Baskıya Uygun Modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (24).jpeg' },
-    { cat: 'print', src: '/assets/images/kullanilan_gorseller/3D Baskıya Uygun Modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (25).jpeg' },
-    { cat: 'print', src: '/assets/images/kullanilan_gorseller/3D Baskıya Uygun Modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (28).jpeg' },
-
-    // Reverse Engineering
-    { cat: 'reverse', src: '/assets/images/kullanilan_gorseller/Tersine Mühendislik (Reverse Engineering)/WhatsApp Image 2026-01-20 at 16.18.30 (29).jpeg' },
-    { cat: 'reverse', src: '/assets/images/kullanilan_gorseller/Tersine Mühendislik (Reverse Engineering)/WhatsApp Image 2026-01-20 at 16.18.30 (30).jpeg' },
-    { cat: 'reverse', src: '/assets/images/kullanilan_gorseller/Tersine Mühendislik (Reverse Engineering)/WhatsApp Image 2026-01-20 at 16.18.30 (31).jpeg' },
-
-    // Industrial
-    { cat: 'industrial', src: '/assets/images/kullanilan_gorseller/Endüstriyel ve Teknik 3D Modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (19).jpeg' },
-    { cat: 'industrial', src: '/assets/images/kullanilan_gorseller/Endüstriyel ve Teknik 3D Modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (20).jpeg' },
-    { cat: 'industrial', src: '/assets/images/kullanilan_gorseller/Endüstriyel ve Teknik 3D Modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (21).jpeg' },
-
-    // Product
-    { cat: 'product', src: '/assets/images/kullanilan_gorseller/ürün 3d modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (14).jpeg' },
-    { cat: 'product', src: '/assets/images/kullanilan_gorseller/ürün 3d modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (15).jpeg' },
-    { cat: 'product', src: '/assets/images/kullanilan_gorseller/ürün 3d modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (16).jpeg' },
-    { cat: 'product', src: '/assets/images/kullanilan_gorseller/ürün 3d modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (17).jpeg' },
-];
-
 const Gallery3D = memo(() => {
+    const { gallery: dbGallery, loading } = useData();
     const [activeCat, setActiveCat] = useState('all');
 
+    // Mapping helper
+    const mapCategory = (dbCat) => {
+        const catMap = {
+            '3D Tarama': 'scan',
+            '3D Modelleme': 'industrial',
+            '3D Baskı': 'print',
+            '3D3P Cihazlar': 'printer',
+            'Tersine Mühendislik': 'reverse',
+            'ürün 3d modelleme': 'product'
+        };
+        return catMap[dbCat] || 'scan';
+    };
+
+    const dbImages = dbGallery.map(item => ({
+        cat: mapCategory(item.category),
+        src: item.image,
+        title: item.title
+    }));
+
+    const allImages = dbImages;
+
     const filteredImages = activeCat === 'all' 
-        ? images 
-        : images.filter(img => img.cat === activeCat);
+        ? allImages 
+        : allImages.filter(img => img.cat === activeCat);
+
 
     return (
         <div className="bg-[#0B0F19] min-h-screen">

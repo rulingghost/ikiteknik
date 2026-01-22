@@ -152,7 +152,9 @@ const Footer = () => {
                                     <Phone size={20} />
                                 </div>
                                 <div className={`text-sm font-black transition-colors ${isDarkPage ? 'text-slate-400 group-hover:text-white' : 'text-slate-500 group-hover:text-slate-900'}`}>
-                                    {SITE_DATA.contact.phones.map(p => <span key={p} className="block">{p}</span>)}
+                                    {SITE_DATA.contact.phones.map(p => (
+                                        <a key={p} href={`tel:${p.replace(/\s/g, '')}`} className="block hover:underline">{p}</a>
+                                    ))}
                                 </div>
                             </div>
                         </div>

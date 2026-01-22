@@ -3,9 +3,12 @@ import { Calendar as CalIcon, Clock, ArrowRight, User, MapPin, Award } from 'luc
 import OptimizedImage from '../components/OptimizedImage';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { useData } from '../context/DataContext';
 
 const Calendar = () => {
-    const events = [
+    const { events: dbEvents, loading } = useData();
+
+    const staticEvents = [
         {
             id: '3ds-max',
             date: { d: '15', m: 'Ocak' },
@@ -29,56 +32,21 @@ const Calendar = () => {
             instructor: 'Mehmet Demir',
             image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789',
             instructorImg: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d'
-        },
-        {
-            id: 'revit',
-            date: { d: '05', m: 'Şubat' },
-            title: 'Revit Architecture',
-            time: '09:00 - 13:00',
-            days: 'Hafta Sonu',
-            quota: 8,
-            status: 'upcoming',
-            instructor: 'Ayşe Kaya',
-            image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e',
-            instructorImg: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2'
-        },
-        {
-            id: 'autocad',
-            date: { d: '12', m: 'Şubat' },
-            title: 'AutoCAD Temel Eğitim',
-            time: '18:30 - 21:30',
-            days: 'Pazartesi - Çarşamba',
-            quota: 0,
-            status: 'full',
-            instructor: 'Can Öztürk',
-            image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789',
-            instructorImg: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7'
-        },
-        {
-            id: 'python',
-            date: { d: '20', m: 'Şubat' },
-            title: 'Python Programlama',
-            time: '19:00 - 22:00',
-            days: 'Çarşamba - Cuma',
-            quota: 6,
-            status: 'active',
-            instructor: 'Zeynep Arslan',
-            image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5',
-            instructorImg: 'https://images.unsplash.com/photo-1580489944761-15a19d654956'
-        },
-        {
-            id: 'graphic-design',
-            date: { d: '28', m: 'Şubat' },
-            title: 'Grafik Tasarım Bootcamp',
-            time: '10:00 - 17:00',
-            days: 'Cumartesi',
-            quota: 10,
-            status: 'upcoming',
-            instructor: 'Burak Yıldız',
-            image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5',
-            instructorImg: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e'
         }
     ];
+
+    const mappedDbEvents = dbEvents.map(evt => ({
+        ...evt,
+        id: evt.id.toString(),
+        date: { 
+            d: new Date(evt.event_date).getDate().toString(), 
+            m: new Date(evt.event_date).toLocaleString('tr-TR', { month: 'long' }) 
+        },
+        instructorImg: evt.instructor_img || 'https://images.unsplash.com/photo-1560250097-0b93528c311a'
+    }));
+
+    const events = [...mappedDbEvents, ...staticEvents];
+
 
   return (
     <div className="pt-24 pb-12 bg-gradient-to-br from-slate-50 via-white to-rose-50 min-h-screen font-sans relative overflow-hidden">

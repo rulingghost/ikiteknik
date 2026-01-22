@@ -63,7 +63,7 @@ const Scanning3D = () => {
   return (
     <div className="bg-[#0B0F19] min-h-screen text-white selection:bg-[#1877F2] selection:text-white font-sans overflow-x-hidden">
       <SEO 
-        title="3D Tarama Hizmetleri | İki Teknik" 
+        title="3D Tarama Hizmetleri | İkiteknik" 
         description="Endüstriyel hassasiyette 3D tarama, lazer tarama, tersine mühendislik ve kalite kontrol çözümleri."
       />
 
@@ -149,13 +149,33 @@ const Scanning3D = () => {
                           </div>
                       </div>
                   </div>
-                  <div className="order-1 lg:order-2 relative group">
-                      <div className="absolute inset-0 bg-[#1877F2]/20 blur-[100px] rounded-full" />
-                      <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl skew-y-3 group-hover:skew-y-0 transition-all duration-700">
-                          <OptimizedImage 
-                             src={galleryImages[0]} 
-                             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                          />
+                  <div className="order-1 lg:order-2 relative">
+                      {/* Technical Blueprint Layout */}
+                      <div className="relative aspect-square max-w-md mx-auto">
+                          {/* Rotating HUD Elements */}
+                          <div className="absolute inset-0 border-[1px] border-[#1877F2]/20 rounded-full animate-rotate-slow" />
+                          <div className="absolute inset-4 border-[1px] border-dashed border-[#1877F2]/10 rounded-full animate-reverse-spin" />
+                          
+                          {/* Crosshair / Corner Accents */}
+                          <div className="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 border-[#1877F2]" />
+                          <div className="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 border-[#1877F2]" />
+                          
+                          {/* Main Image with Scanline */}
+                          <div className="absolute inset-0 rounded-2xl overflow-hidden border border-[#1877F2]/30 shadow-[0_0_50px_rgba(24,119,242,0.1)] group">
+                              <OptimizedImage 
+                                 src={galleryImages[0]} 
+                                 className="w-full h-full object-cover grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700"
+                              />
+                              {/* Animated Scan Line */}
+                              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#1877F2]/20 to-transparent h-20 w-full animate-scan-line pointer-events-none" />
+                              
+                              {/* Technical Metadata Overlay */}
+                              <div className="absolute top-4 left-4 font-mono text-[10px] text-[#1877F2] opacity-80 space-y-1">
+                                  <div>COORD_X: 45.232</div>
+                                  <div>COORD_Y: 12.894</div>
+                                  <div>SCAN_RES: 0.02mm</div>
+                              </div>
+                          </div>
                       </div>
                   </div>
               </div>
@@ -204,32 +224,104 @@ const Scanning3D = () => {
           </div>
        </section>
 
-       {/* GALLERY GRID */}
-       <section className="py-24 bg-[#0F1420]">
+       {/* FEATURED PROJECTS SHOWCASE */}
+       <section className="py-24 bg-[#0B0F19] relative overflow-hidden">
+         {/* Background Elements */}
+         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#1877F2]/5 rounded-full blur-[100px]" />
+         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[100px]" />
+
          <div className="container mx-auto px-6">
-              <div className="flex justify-between items-end mb-12">
-                 <div>
-                     <h3 className="text-2xl font-bold text-white uppercase tracking-wider mb-2">Proje Galerisi</h3>
-                     <p className="text-slate-500">Son tamamlanan tarama projelerimizden örnekler</p>
-                 </div>
-                 <Link to="/galeri" className="text-[#1877F2] font-bold uppercase tracking-widest text-xs hover:underline">
-                     Tüm Galeriyi Gör
-                 </Link>
+              <div className="text-center mb-20">
+                  <span className="text-[#1877F2] font-bold tracking-[0.2em] uppercase text-sm mb-4 block">Portfolyo</span>
+                  <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight">Örnek Projeler</h2>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                 {galleryImages.map((img, idx) => (
-                     <div 
-                         key={idx} 
-                         onClick={() => { setCurrentImageIndex(idx); setLightboxOpen(true); }}
-                         className="group relative aspect-square rounded-xl overflow-hidden cursor-pointer border border-white/5"
-                     >
-                         <OptimizedImage src={img} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                         <div className="absolute inset-0 bg-[#1877F2]/0 group-hover:bg-[#1877F2]/40 transition-colors duration-300 flex items-center justify-center">
-                             <Scan className="text-white opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300" size={32} />
-                         </div>
-                     </div>
-                 ))}
+              {/* Large Feature 1 */}
+              <div className="grid lg:grid-cols-2 gap-12 items-center mb-32 group">
+                  <div className="relative">
+                      <div className="absolute inset-0 bg-[#1877F2]/20 blur-2xl transform -rotate-3 group-hover:rotate-0 transition-all duration-700 rounded-[2rem]" />
+                      <div className="relative rounded-[2rem] overflow-hidden border border-white/10 aspect-[4/3] shadow-2xl">
+                          <OptimizedImage 
+                            src={galleryImages[0]} 
+                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 transform group-hover:scale-105"
+                          />
+                          <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/90 to-transparent">
+                              <div className="flex items-center gap-2 text-[#1877F2] font-mono text-xs mb-2">
+                                  <Scan size={14} /> <span>SCAN_DATA_01</span>
+                              </div>
+                              <h3 className="text-2xl font-bold text-white mb-2">Endüstriyel Parça Tarama</h3>
+                              <p className="text-slate-300 text-sm">Tersine mühendislik için mikron hassasiyetinde veri toplama.</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div className="space-y-8">
+                      <div className="flex gap-4 items-start">
+                          <div className="w-12 h-12 bg-[#1877F2]/10 rounded-xl flex items-center justify-center text-[#1877F2] shrink-0">
+                              <Target size={24} />
+                          </div>
+                          <div>
+                              <h4 className="text-xl font-bold text-white mb-2">Yüksek Doğruluk</h4>
+                              <p className="text-slate-400 leading-relaxed">Karmaşık geometrilerin 0.02mm hassasiyetle dijitalleştirilmesi. CAD modelleme için mükemmel referans verisi.</p>
+                          </div>
+                      </div>
+                      <div className="flex gap-4 items-start">
+                          <div className="w-12 h-12 bg-[#1877F2]/10 rounded-xl flex items-center justify-center text-[#1877F2] shrink-0">
+                              <Layers size={24} />
+                          </div>
+                          <div>
+                              <h4 className="text-xl font-bold text-white mb-2">Yüzey Analizi</h4>
+                              <p className="text-slate-400 leading-relaxed">Renk haritası ile deformasyon analizi ve kalite kontrol süreçleri.</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              {/* Large Feature 2 */}
+              <div className="grid lg:grid-cols-2 gap-12 items-center group">
+                  <div className="lg:order-2 relative">
+                      <div className="absolute inset-0 bg-cyan-500/20 blur-2xl transform rotate-3 group-hover:rotate-0 transition-all duration-700 rounded-[2rem]" />
+                      <div className="relative rounded-[2rem] overflow-hidden border border-white/10 aspect-[4/3] shadow-2xl">
+                          <OptimizedImage 
+                            src={galleryImages[3]} 
+                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 transform group-hover:scale-105"
+                          />
+                          <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/90 to-transparent">
+                              <div className="flex items-center gap-2 text-cyan-400 font-mono text-xs mb-2">
+                                  <Cpu size={14} /> <span>SCAN_DATA_02</span>
+                              </div>
+                              <h3 className="text-2xl font-bold text-white mb-2">Mekanik Sistem Tarama</h3>
+                              <p className="text-slate-300 text-sm">Montaj doğrulama ve dijital arşivleme projesi.</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div className="lg:order-1 space-y-8 text-right lg:text-right">
+                       <div className="flex gap-4 items-start flex-row-reverse">
+                          <div className="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center text-cyan-400 shrink-0">
+                              <Box size={24} />
+                          </div>
+                          <div>
+                              <h4 className="text-xl font-bold text-white mb-2">Dijital Montaj</h4>
+                              <p className="text-slate-400 leading-relaxed">Taranan parçaların dijital ortamda birleştirilmesi ve çakışma testleri.</p>
+                          </div>
+                      </div>
+                      <div className="flex gap-4 items-start flex-row-reverse">
+                          <div className="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center text-cyan-400 shrink-0">
+                              <CheckCircle size={24} />
+                          </div>
+                          <div>
+                              <h4 className="text-xl font-bold text-white mb-2">Hızlı Sonuç</h4>
+                              <p className="text-slate-400 leading-relaxed">Geleneksel yöntemlere göre %60 daha hızlı ölçüm ve raporlama.</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              {/* View Full Gallery Link (Optional text link instead of grid) */}
+              <div className="text-center mt-20">
+                   <Link to="/galeri" className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors border-b border-slate-700 hover:border-white pb-1">
+                       <span>Daha fazla örnek proje inceleyin</span>
+                       <ArrowRight size={16} />
+                   </Link>
               </div>
          </div>
        </section>

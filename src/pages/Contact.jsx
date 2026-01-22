@@ -4,6 +4,7 @@ import { SITE_DATA } from '../constants';
 import OptimizedImage from '../components/OptimizedImage';
 import { useLocation } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { supabase } from '../utils/supabaseClient';
 
 const Contact = () => {
   const location = useLocation();
@@ -48,15 +49,20 @@ const Contact = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
     
-    // Simulate API call
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // Here you would normally send the data to your backend
-      console.log('Form submitted:', formData);
+      const { error } = await supabase
+        .from('submissions')
+        .insert([{
+          name: `${formData.firstName} ${formData.lastName}`,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          status: 'new'
+        }]);
+
+      if (error) throw error;
       
       setSubmitStatus('success');
-      // Reset form
       setFormData({
         firstName: '',
         lastName: '',
@@ -65,6 +71,7 @@ const Contact = () => {
         message: ''
       });
     } catch (error) {
+      console.error('Form submission error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -153,7 +160,7 @@ const Contact = () => {
                              <Phone size={20} />
                          </div>
                          <h4 className="text-sm font-bold text-slate-900">Telefon</h4>
-                         <p className="text-slate-500 text-xs font-medium">{SITE_DATA.contact.phones[0]}</p>
+                         <a href={`tel:${SITE_DATA.contact.phones[0].replace(/\s/g, '')}`} className="text-slate-500 text-xs font-medium hover:text-rose-600 transition-colors underline decoration-dotted">{SITE_DATA.contact.phones[0]}</a>
                      </div>
                      <div 
                         className="bg-white p-6 rounded-[1.5rem] border border-slate-100 flex flex-col items-center text-center gap-3 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:-rotate-1 transition-all cursor-pointer animate-scale-in"
@@ -395,11 +402,12 @@ const Contact = () => {
                             +5
                         </div>
                     </div>
-                    <button
-                        className="w-full bg-white text-slate-900 py-3 rounded-xl font-bold text-sm hover:bg-rose-50 hover:scale-105 active:scale-95 transition-all shadow-lg"
+                     <a
+                        href={`tel:${SITE_DATA.contact.phones[0].replace(/\s/g, '')}`}
+                        className="w-full bg-white text-slate-900 py-3 rounded-xl font-bold text-sm hover:bg-rose-50 hover:scale-105 active:scale-95 transition-all shadow-lg flex items-center justify-center gap-2"
                     >
-                        Hemen Ara
-                    </button>
+                        <Phone size={16} /> Hemen Ara: {SITE_DATA.contact.phones[0]}
+                    </a>
                 </div>
             </div>
         </div>

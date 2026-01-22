@@ -1,0 +1,22 @@
+﻿5073c10 HEAD@{0}: commit: Refactor: Split site into Education and Production hubs, add Gateway page, fix Navbar logic, and enhance 3D pages
+91fc48a HEAD@{1}: commit: Restore Quick Quote button in Navbar and remove generic WhatsApp button
+20f9d75 HEAD@{2}: commit: Update GetQuote page with new design and remove generic WhatsApp button
+d4fd379 HEAD@{3}: commit: Enhance UI, SEO integration and Courses filter update
+f33f7dc HEAD@{4}: commit: fix: Rename inline ScrollToTop to RouteScrollToTop in App.jsx to avoid conflict
+badb933 HEAD@{5}: commit: Refine UI: Enhanced Courses, Articles, About, Calendar, PearsonVue pages with Lightbox and Routing
+e2d0dde HEAD@{6}: commit: Fix: 3D animations wrapped in @layer utilities to restore functionality
+e9bd754 HEAD@{7}: commit: Trigger redeploy to fix build error
+2a87327 HEAD@{8}: commit: Fix: Build hatas─▒na neden olan kullan─▒lmayan framer-motion chunk yap─▒land─▒rmas─▒ kald─▒r─▒ld─▒
+d8093e3 HEAD@{9}: commit: Marka ismi g├╝ncellendi: '─░ki Teknik' 'ikiteknik' (biti┼şik yaz─▒m) ve ├Âzel favicon eklendi
+b85dff3 HEAD@{10}: commit: EXTREME performance boost: Remove Framer Motion, use pure CSS animations - 300KB lighter!
+7f9b90c HEAD@{11}: commit: Major performance boost: lazy loading, code splitting, image optimization, terser minification
+d2082d3 HEAD@{12}: commit: Performance optimization: code splitting and image optimization
+a799277 HEAD@{13}: commit: Remove node_modules from git and fix build script
+fe07c66 HEAD@{14}: commit: Move vite to dependencies for Vercel compatibility
+71a99ee HEAD@{15}: commit: Remove vercel.json to use Project Settings
+73f7264 HEAD@{16}: commit: Fix Vercel build - use npx vite build
+3263c0b HEAD@{17}: commit: Trigger Vercel rebuild
+efd3661 HEAD@{18}: commit: Fix Vercel build configuration - use static-build
+21d15be HEAD@{19}: commit: Add Vercel configuration for deployment
+c24aa37 HEAD@{20}: Branch: renamed refs/heads/master to refs/heads/main
+c24aa37 HEAD@{22}: commit (initial): Modern UI with 3D animations and visual content - 2026 update

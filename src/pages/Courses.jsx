@@ -4,6 +4,7 @@ import { SITE_DATA } from '../constants';
 import OptimizedImage from '../components/OptimizedImage';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { useData } from '../context/DataContext';
 
 const CourseCard = memo(({ course }) => (
     <div className="tilt-3d group bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 flex flex-col h-full animate-slide-up">
@@ -64,6 +65,7 @@ const CourseCard = memo(({ course }) => (
 ));
 
 const Courses = () => {
+    const { courses: dbCourses, loading } = useData();
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('All');
 
@@ -79,7 +81,7 @@ const Courses = () => {
     };
 
     const allCourses = useMemo(() => {
-        return SITE_DATA.education_page.categories.flatMap(cat => 
+        const staticList = SITE_DATA.education_page.categories.flatMap(cat => 
             cat.courses.map(courseName => ({
                 id: `${cat.id}-${courseName}`,
                 title: courseName,
@@ -90,7 +92,15 @@ const Courses = () => {
                 isPopular: Math.random() > 0.7
             }))
         );
-    }, []);
+
+        const dbList = dbCourses.map(course => ({
+            ...course,
+            id: course.id.toString(),
+            isPopular: course.is_popular
+        }));
+
+        return [...dbList, ...staticList];
+    }, [dbCourses]);
 
     const filteredCourses = useMemo(() => {
         return allCourses.filter(course => {
@@ -99,6 +109,7 @@ const Courses = () => {
             return matchesSearch && matchesCategory;
         });
     }, [searchTerm, selectedCategory, allCourses]);
+
 
     const categories = ['All', ...SITE_DATA.education_page.categories.map(c => c.title)];
 

@@ -140,29 +140,64 @@ const Printing3D = memo(() => {
           </div>
       </section>
 
-      {/* GALLERY STRIP */}
-      <section className="py-24 border-t border-white/5">
-          <div className="container mx-auto px-6">
-               <div className="flex justify-between items-end mb-12">
-                   <h2 className="text-3xl font-black text-white uppercase tracking-tight">Üretim Galerisi</h2>
-                   <Link to="/works" className="text-[#1877F2] font-bold uppercase tracking-widest text-sm hover:underline">Tümünü Gör</Link>
-               </div>
-               
-               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                   {[23, 25, 26, 27].map((num, i) => (
-                       <div key={i} className="group aspect-square relative rounded-2xl overflow-hidden bg-[#151E32]">
-                           <OptimizedImage 
-                               src={`/assets/images/kullanilan_gorseller/3D Baskıya Uygun Modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (${num}).jpeg`}
-                               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                           />
-                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                               <span className="text-white font-bold text-sm">Proje Detayı</span>
-                           </div>
-                       </div>
-                   ))}
-               </div>
-          </div>
-      </section>
+       {/* SUCCESS STORIES FEATURE */}
+       <section className="py-24 border-t border-white/5 bg-[#0B0F19] relative">
+           <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#1877F2]/30 to-transparent" />
+           
+           <div className="container mx-auto px-6 relative z-10">
+                <div className="text-center mb-16">
+                    <span className="text-orange-500 font-bold tracking-[0.2em] uppercase text-sm mb-4 block">Başarı Hikayeleri</span>
+                    <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tight">Üretim Kapasitesi</h2>
+                </div>
+                
+                <div className="grid lg:grid-cols-2 gap-8 mb-8">
+                     {/* Feature 1: Large Engine Block */}
+                     <div className="group relative rounded-[2.5rem] overflow-hidden bg-[#151E32] border border-white/5 aspect-[16/9] lg:aspect-auto">
+                         <OptimizedImage 
+                             src="/assets/images/kullanilan_gorseller/3D Baskıya Uygun Modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (23).jpeg"
+                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                         />
+                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent flex flex-col justify-end p-10">
+                             <div className="bg-orange-500 w-16 h-1 mb-6" />
+                             <h3 className="text-3xl font-black text-white mb-2 uppercase italic">Motor Bloğu Prototipi</h3>
+                             <p className="text-slate-300 max-w-md">Dayanıklı filament kullanılarak üretilen tam ölçekli motor parçası prototiplemesi. Isı dayanımı ve montaj testi başarısı.</p>
+                         </div>
+                     </div>
+
+                     <div className="flex flex-col gap-8">
+                         {/* Feature 2: Turbine */}
+                         <div className="flex-1 group relative rounded-[2.5rem] overflow-hidden bg-[#151E32] border border-white/5">
+                             <OptimizedImage 
+                                 src="/assets/images/kullanilan_gorseller/3D Baskıya Uygun Modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (27).jpeg"
+                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                             />
+                             <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-transparent flex flex-col justify-center p-8 pl-10">
+                                 <h3 className="text-2xl font-black text-white mb-1">Türbin Tasarımı</h3>
+                                 <p className="text-slate-400 text-sm">Aerodinamik test modeli üretimi.</p>
+                             </div>
+                         </div>
+
+                         {/* Feature 3: Detailed Gear */}
+                         <div className="flex-1 group relative rounded-[2.5rem] overflow-hidden bg-[#151E32] border border-white/5">
+                             <OptimizedImage 
+                                 src="/assets/images/kullanilan_gorseller/3D Baskıya Uygun Modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (25).jpeg"
+                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                             />
+                             <div className="absolute inset-0 bg-gradient-to-l from-black/90 to-transparent flex flex-col justify-center items-end p-8 pr-10 text-right">
+                                 <h3 className="text-2xl font-black text-white mb-1">Dişli Sistemleri</h3>
+                                 <p className="text-slate-400 text-sm">Fonksiyonel mekanik parça üretimi.</p>
+                             </div>
+                         </div>
+                     </div>
+                </div>
+
+                <div className="text-center">
+                    <Link to="/galeri" className="inline-block px-8 py-3 border border-white/20 rounded-full text-white hover:bg-white hover:text-black transition-colors font-bold text-sm uppercase tracking-widest">
+                        Tüm Projeleri Keşfet
+                    </Link>
+                </div>
+           </div>
+       </section>
 
       <EducationBridge 
         title="3D Yazıcı Teknolojilerini Öğrenin"

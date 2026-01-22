@@ -1,0 +1,21 @@
+﻿5073c10 Refactor: Split site into Education and Production hubs, add Gateway page, fix Navbar logic, and enhance 3D pages
+91fc48a Restore Quick Quote button in Navbar and remove generic WhatsApp button
+20f9d75 Update GetQuote page with new design and remove generic WhatsApp button
+d4fd379 Enhance UI, SEO integration and Courses filter update
+f33f7dc fix: Rename inline ScrollToTop to RouteScrollToTop in App.jsx to avoid conflict
+badb933 Refine UI: Enhanced Courses, Articles, About, Calendar, PearsonVue pages with Lightbox and Routing
+e2d0dde Fix: 3D animations wrapped in @layer utilities to restore functionality
+e9bd754 Trigger redeploy to fix build error
+2a87327 Fix: Build hatas─▒na neden olan kullan─▒lmayan framer-motion chunk yap─▒land─▒rmas─▒ kald─▒r─▒ld─▒
+d8093e3 Marka ismi g├╝ncellendi: '─░ki Teknik'  'ikiteknik' (biti┼şik yaz─▒m) ve ├Âzel favicon eklendi
+b85dff3 EXTREME performance boost: Remove Framer Motion, use pure CSS animations - 300KB lighter!
+7f9b90c Major performance boost: lazy loading, code splitting, image optimization, terser minification
+d2082d3 Performance optimization: code splitting and image optimization
+a799277 Remove node_modules from git and fix build script
+fe07c66 Move vite to dependencies for Vercel compatibility
+71a99ee Remove vercel.json to use Project Settings
+73f7264 Fix Vercel build - use npx vite build
+3263c0b Trigger Vercel rebuild
+efd3661 Fix Vercel build configuration - use static-build
+21d15be Add Vercel configuration for deployment
+c24aa37 Modern UI with 3D animations and visual content - 2026 update

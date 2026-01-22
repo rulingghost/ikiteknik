@@ -17,7 +17,7 @@ const EducationHero = memo(() => {
             <div className="text-center md:text-left">
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-rose-50 text-rose-600 rounded-full text-xs font-bold uppercase tracking-widest mb-6 border border-rose-100">
                     <span className="w-2 h-2 bg-rose-600 rounded-full animate-ping" />
-                    İki Teknik Bilişim
+                    İkiteknik Bilişim
                 </div>
                 
                 <h1 className="text-5xl md:text-7xl font-black text-slate-900 mb-8 leading-[1.1] tracking-tighter">
@@ -45,14 +45,22 @@ const EducationHero = memo(() => {
                 </div>
             </div>
 
-            <div className="relative hidden md:block group perspective-container">
+            <div className="relative hidden md:block group">
+                 {/* Background decoration with real project image */}
+                 <div className="absolute inset-0 -z-10">
+                     <OptimizedImage 
+                        src="/assets/images/kullanilan_gorseller/ürün 3d modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (14).jpeg"
+                        className="w-full h-full object-cover opacity-10 rounded-3xl"
+                     />
+                 </div>
+                 
                  <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-8 border-white bg-white rotate-3 group-hover:rotate-0 transition-transform duration-700">
                      <OptimizedImage 
-                        src="https://images.unsplash.com/photo-1531482615713-2afd69097998"
+                        src="/assets/images/kullanilan_gorseller/3d tarama/WhatsApp Image 2026-01-20 at 16.18.30 (2).jpeg"
                         className="w-full h-full object-cover aspect-[4/3]"
                      />
                  </div>
-                 <div className="absolute top-10 -right-10 w-full h-full bg-slate-200 rounded-3xl -z-10 -rotate-3 group-hover:rotate-0 transition-transform duration-700 delay-75" />
+                 <div className="absolute top-10 -right-10 w-full h-full bg-gradient-to-br from-rose-200 to-orange-200 rounded-3xl -z-10 -rotate-3 group-hover:rotate-0 transition-transform duration-700 delay-75 opacity-50" />
             </div>
         </div>
     </section>
@@ -63,7 +71,7 @@ const EducationHome = () => {
     return (
         <div className="bg-slate-50 min-h-screen">
             <SEO 
-                title="Eğitim Akademisi | İki Teknik" 
+                title="Eğitim Akademisi | İkiteknik" 
                 description="Türkiye'nin önde gelen Bilişim Eğitim Merkezi. Yazılım, Tasarım, 3D Modelleme ve Mühendislik kursları."
             />
             

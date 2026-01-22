@@ -77,7 +77,7 @@ const Modeling3D = () => {
   return (
     <div className="bg-[#0B0F19] min-h-screen text-white selection:bg-[#1877F2] selection:text-white font-sans">
       <SEO 
-        title="3D Modelleme Hizmetleri | İki Teknik" 
+        title="3D Modelleme Hizmetleri | İkiteknik" 
         description="Profesyonel ürün modelleme, endüstriyel tasarım, tersine mühendislik ve 3D baskı için model hazırlama."
       />
 
@@ -145,13 +145,34 @@ const Modeling3D = () => {
                           Projenizi Başlatın <ArrowRight />
                       </Link>
                   </div>
-                  <div className="order-1 lg:order-2 relative group">
-                      <div className="absolute inset-0 bg-indigo-600/20 blur-[100px] rounded-full" />
-                      <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl skew-x-3 group-hover:skew-x-0 transition-all duration-700">
-                          <OptimizedImage 
-                             src={galleryImages[0]} 
-                             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                          />
+                  <div className="order-1 lg:order-2 relative">
+                      {/* Advanced HUD Mockup */}
+                      <div className="relative aspect-square max-w-sm mx-auto">
+                          {/* Rotating CAD Rims */}
+                          <div className="absolute inset-0 border-2 border-[#1877F2]/10 rounded-full animate-spin-slow" />
+                          <div className="absolute inset-8 border border-dashed border-[#1877F2]/20 rounded-full animate-reverse-spin" />
+                          
+                          {/* Vertical / Horizontal Axes */}
+                          <div className="absolute inset-0 flex items-center justify-center opacity-20">
+                              <div className="w-full h-[1px] bg-[#1877F2]" />
+                              <div className="h-full w-[1px] bg-[#1877F2] absolute" />
+                          </div>
+
+                          {/* Image with CAD UI Elements */}
+                          <div className="absolute inset-4 rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
+                              <OptimizedImage 
+                                 src={galleryImages[0]} 
+                                 className="w-full h-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0"
+                              />
+                              
+                              {/* HUD Overlay */}
+                              <div className="absolute inset-0 bg-gradient-to-tr from-[#1877F2]/20 to-transparent pointer-events-none" />
+                              <div className="absolute bottom-4 right-4 text-[#1877F2] font-mono text-[10px] bg-black/40 backdrop-blur-sm p-3 rounded-lg border border-white/10">
+                                  <div>POLYS: 1.2M</div>
+                                  <div>VERTS: 840K</div>
+                                  <div>RENDER: READY</div>
+                              </div>
+                          </div>
                       </div>
                   </div>
               </div>
@@ -200,39 +221,80 @@ const Modeling3D = () => {
          </div>
       </section>
 
-      {/* GALLERY STRIP */}
-      <section id="galeri" className="py-24 bg-[#0B0F19] border-t border-white/5">
-        <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-black text-center mb-16 uppercase tracking-widest text-[#1877F2]">
-                / Seçilmiş Çalışmalar
-            </h2>
+       {/* SIGNATURE PROJECTS SHOWCASE */}
+       <section id="galeri" className="py-24 bg-[#0B0F19] border-t border-white/5 relative">
+         <div className="absolute inset-0 bg-[url('/assets/images/grid.png')] opacity-5 pointer-events-none" />
+         
+         <div className="container mx-auto px-6 relative z-10">
+            <div className="text-center mb-20 animate-fade-in-up">
+                <span className="text-[#1877F2] font-black tracking-[0.2em] uppercase text-xs mb-4 block">Design Excellence</span>
+                <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tight">/ Seçilmiş Çalışmalar</h2>
+            </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {galleryImages.slice(0, 6).map((img, i) => (
-                    <div 
-                        key={i}
-                        onClick={() => {setCurrentImageIndex(i); setLightboxOpen(true);}}
-                        className="group relative aspect-[3/4] overflow-hidden rounded-md cursor-pointer"
-                    >
-                        <OptimizedImage 
-                            src={img} 
-                            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0 grayscale" 
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#1877F2]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                            <span className="text-white font-bold text-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                Örnek Çalışma #{i + 1}
-                            </span>
+            <div className="flex flex-col gap-32">
+                {/* Project 1: Industrial (Left) */}
+                <div className="flex flex-col lg:flex-row gap-12 items-center group">
+                    <div className="lg:w-1/2 relative">
+                        <div className="absolute -inset-4 border-2 border-[#1877F2]/20 rounded-[2rem] transform rotate-2 group-hover:rotate-0 transition-transform duration-500" />
+                        <div className="relative rounded-[1.8rem] overflow-hidden aspect-[4/3] shadow-2xl">
+                            <OptimizedImage 
+                                src={galleryImages[5]} 
+                                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 hover:scale-105" 
+                            />
                         </div>
                     </div>
-                ))}
+                    <div className="lg:w-1/2 space-y-6">
+                        <div className="inline-block px-3 py-1 bg-[#1877F2]/10 text-[#1877F2] text-xs font-bold uppercase rounded-full">Industrial Design</div>
+                        <h3 className="text-3xl font-black text-white uppercase italic">Endüstriyel Makine Parçaları</h3>
+                        <p className="text-slate-400 text-lg leading-relaxed">
+                            Mekanik sistemlerin 3D modellemesi, montaj analizleri ve üretim öncesi simülasyonları. Hatasız üretim için dijital ikiz oluşturma.
+                        </p>
+                        <div className="flex gap-2 pt-4">
+                             {['Solidworks', 'Analiz', 'Montaj'].map(tag => (
+                                 <span key={tag} className="text-xs text-slate-500 border border-slate-700 px-3 py-1 rounded-full">{tag}</span>
+                             ))}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Project 2: Artistic/Complex (Right) */}
+                <div className="flex flex-col lg:flex-row-reverse gap-12 items-center group">
+                    <div className="lg:w-1/2 relative">
+                        <div className="absolute -inset-4 border-2 border-cyan-500/20 rounded-[2rem] transform -rotate-2 group-hover:rotate-0 transition-transform duration-500" />
+                        <div className="relative rounded-[1.8rem] overflow-hidden aspect-[4/3] shadow-2xl">
+                            <OptimizedImage 
+                                src={galleryImages[2]} 
+                                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 hover:scale-105" 
+                            />
+                        </div>
+                    </div>
+                    <div className="lg:w-1/2 space-y-6 text-right lg:text-right">
+                        <div className="inline-block px-3 py-1 bg-cyan-500/10 text-cyan-400 text-xs font-bold uppercase rounded-full">Organic Modeling</div>
+                        <h3 className="text-3xl font-black text-white uppercase italic">Organik Form Tasarımı</h3>
+                        <p className="text-slate-400 text-lg leading-relaxed">
+                            Karmaşık yüzeylere sahip medikal, sanatsal veya ergonomik ürünlerin modellernmesi. 3ds Max ve ZBrush ile detaylandırma.
+                        </p>
+                        <div className="flex gap-2 pt-4 justify-end">
+                             {['Sub-D', 'Sculpting', 'Render'].map(tag => (
+                                 <span key={tag} className="text-xs text-slate-500 border border-slate-700 px-3 py-1 rounded-full">{tag}</span>
+                             ))}
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+
+            <div className="text-center mt-24">
+                <Link to="/iletisim" className="btn-primary inline-flex items-center gap-2 px-10 py-4">
+                    <span>Sizin Projenizi Tasarlayalım</span>
+                    <ArrowRight size={18} />
+                </Link>
+            </div>
+         </div>
       </section>
 
       <EducationBridge 
         title="Kendi Tasarımlarınızı Üretin"
-        desc="SolidWorks ve Fusion 360 eğitimlerimizle profesyonel modelleme tekniklerini öğrenin. Sektörün en köklü eğitim kurumu İki Teknik ile kariyerinize yön verin."
-        linkText="Eğitimleri İncele"
+        desc="SolidWorks ve Fusion 360 eğitimlerimizle profesyonel modelleme tekniklerini öğrenin. Sektörün en köklü eğitim kurumu İkiteknik ile kariyerinize yön verin."
         linkTo="/egitimlerimiz"
       />
 

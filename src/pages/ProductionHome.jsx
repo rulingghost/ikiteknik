@@ -48,17 +48,26 @@ const ProductionHero = memo(() => {
                 </div>
              </div>
              
-             {/* 3D Visual Element (Abstract) */}
              <div className="relative hidden lg:block animate-float">
-                 <div className="relative w-full aspect-square max-w-md mx-auto">
-                     <div className="absolute inset-0 bg-gradient-to-tr from-[#1877F2] to-cyan-500 rounded-full opacity-20 blur-3xl"></div>
-                      {/* Using the 3D Printer image as main visual but styled cool */}
-                     <div className="relative z-10 rounded-3xl overflow-hidden border border-white/10 shadow-2xl skew-y-3 hover:skew-y-0 transition-all duration-700 bg-[#151E32]/50 backdrop-blur-sm p-4">
+                 <div className="relative w-full aspect-square max-w-lg mx-auto">
+                     {/* HUD Rims */}
+                     <div className="absolute inset-0 border-[1px] border-[#1877F2]/20 rounded-full animate-rotate-slow" />
+                     <div className="absolute inset-8 border-[1px] border-dashed border-[#1877F2]/10 rounded-full animate-reverse-spin" />
+                     
+                     {/* Main Visual */}
+                     <div className="absolute inset-16 rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl group shadow-[0_0_50px_rgba(24,119,242,0.1)]">
                          <OptimizedImage 
                             src="/assets/images/kullanilan_gorseller/3D Baskıya Uygun Modelleme/WhatsApp Image 2026-01-20 at 16.18.30 (27).jpeg"
-                            className="w-full h-full object-cover rounded-2xl"
+                            className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
                          />
-                         <div className="absolute top-8 right-8 w-20 h-20 border-4 border-[#1877F2] rounded-full animate-spin-slow opacity-50 border-t-transparent" />
+                         {/* Scan Line */}
+                         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#1877F2]/20 to-transparent h-20 w-full animate-scan-line pointer-events-none" />
+                     </div>
+
+                     {/* Floating Tech Chips */}
+                     <div className="absolute top-10 right-10 p-4 bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl animate-float" style={{animationDelay:'1s'}}>
+                         <div className="text-[10px] font-bold text-[#1877F2] mb-1">PRECISION_LVL</div>
+                         <div className="text-white font-mono text-sm">0.001mm</div>
                      </div>
                  </div>
              </div>
@@ -66,6 +75,7 @@ const ProductionHero = memo(() => {
     </section>
   );
 });
+
 
 const ProductionHome = () => {
     return (

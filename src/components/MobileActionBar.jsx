@@ -43,7 +43,7 @@ const MobileActionBar = memo(() => {
     return (
         <div className={`md:hidden fixed bottom-0 left-0 w-full z-50 transition-transform duration-300 backdrop-blur-lg ${isVisible ? 'translate-y-0' : 'translate-y-full'} ${bgClass}`}>
             <div className="grid grid-cols-4 h-16 items-center items-stretch pb-safe">
-                <a href={`tel:${SITE_DATA?.contact?.phones?.[0]}`} className="flex flex-col items-center justify-center gap-1 active:bg-black/5">
+                <a href={`tel:${SITE_DATA?.contact?.phones?.[0]?.replace(/\s/g, '')}`} className="flex flex-col items-center justify-center gap-1 active:bg-black/5">
                     <Phone size={20} />
                     <span className="text-[10px] font-bold">Ara</span>
                 </a>
